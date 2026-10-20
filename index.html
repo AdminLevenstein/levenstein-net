@@ -24,6 +24,13 @@ max-width:860px;margin:0 auto;padding:0 16px 60px;color:var(--ink);font:400 16px
 .lv .nlc{background:linear-gradient(135deg,#1F3A68,#2B4ACB)}
 .lv .blh{background:linear-gradient(135deg,#B23A48,#E2725B)}
 .lv .ij{background:linear-gradient(135deg,#6B3E26,#C68642)}
+.lv a.club{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:16px;padding:24px 26px;border-radius:10px;color:#fff;text-decoration:none;background:linear-gradient(120deg,#E8743B,#F4A259 60%,#F7C873);box-shadow:0 4px 14px rgba(0,0,0,.08);transition:transform .15s ease,box-shadow .15s ease}
+.lv a.club:hover,.lv a.club:focus{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.16)}
+.lv a.club .k{font:600 11px/1 Poppins,sans-serif;letter-spacing:.18em;text-transform:uppercase;opacity:.9;margin:0 0 8px}
+.lv a.club .t{font:600 21px/1.2 Manrope,Poppins,sans-serif;margin:0 0 6px}
+.lv a.club .d{font-size:14.5px;line-height:1.5;opacity:.95;margin:0}
+.lv a.club .go{flex:none;font:600 11px/1 Poppins,sans-serif;letter-spacing:.14em;text-transform:uppercase;background:#fff;color:#C2571F;padding:12px 16px;border-radius:999px}
+@media(max-width:640px){.lv a.club{flex-direction:column;align-items:flex-start}}
 .lv .foot{text-align:center;color:var(--mut);font-size:13px;margin-top:26px}
 @media(max-width:640px){.lv .grid{grid-template-columns:1fr}.lv .hero{padding:28px 18px}}
 </style>
@@ -47,6 +54,9 @@ max-width:860px;margin:0 auto;padding:0 16px 60px;color:var(--ink);font:400 16px
 <div><p class="t">IndoJack</p><p class="d">Specialty Indonesian coffee, from Bali to America.</p></div>
 <span class="go">Visit &rarr;</span></a>
 </div>
+<a class="club" href="/club/">
+<div><p class="k">Join us in Bali</p><p class="t">Golden Hour Club</p><p class="d">A monthly sunset evening for Bali&rsquo;s business people. No speeches, free for the first year.</p></div>
+<span class="go">Request an invitation &rarr;</span></a>
 <p class="foot">&copy; Nicholas Levenstein &amp; Company</p>
 </div>
 </body></html>
