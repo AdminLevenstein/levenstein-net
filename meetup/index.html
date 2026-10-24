@@ -30,7 +30,6 @@
   .fact span{font-size:12px;color:var(--ink-3)}
   @media(max-width:700px){.facts{grid-template-columns:repeat(2,1fr)}}
   .btn{display:inline-block;padding:12px 20px;border-radius:4px;font-weight:600;font-size:14px;background:var(--c);color:#fff;margin-top:26px}
-  .btn.ghost{background:transparent;color:var(--c);border:1px solid var(--c);margin-left:8px}
 
   .rule{padding:48px 0;background:var(--paper-2)}
   .rule .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px}
@@ -45,7 +44,7 @@
 
   .episodes{padding:64px 0}
   .episodes h2{font-size:clamp(26px,3.4vw,38px);margin:12px 0 28px;font-weight:600;letter-spacing:-.015em}
-  .ep{display:block;max-width:760px;padding:30px 0;border-top:1px solid var(--line);align-items:start}
+  .ep{display:block;max-width:760px;padding:30px 0;border-top:1px solid var(--line)}
   .ep:last-child{border-bottom:1px solid var(--line)}
   .ep .date{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--c);font-weight:700}
   .ep h3{font-size:24px;margin:8px 0 10px;font-weight:600;letter-spacing:-.01em}
@@ -57,7 +56,17 @@
   .present .eyebrow{color:#b8a7e8}
   .present h2{font-size:clamp(26px,3.4vw,38px);margin:12px 0 12px;font-weight:600}
   .present p{color:#b9c6d6;max-width:62ch}
-  .present .btn{background:#fff;color:var(--navy)}
+  .present .btn{background:#fff;color:var(--navy);border:0;cursor:pointer;font-family:inherit}
+  .pform{max-width:720px;margin-top:26px;display:grid;gap:14px}
+  .pform .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:640px){.pform .row2{grid-template-columns:1fr}}
+  .pform label{display:grid;gap:6px;font-size:13px;color:#b9c6d6;font-weight:600}
+  .pform label span{font-weight:400;color:#8a9bb0}
+  .pform input,.pform textarea{width:100%;font:inherit;font-size:15px;color:#fff;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.22);border-radius:4px;padding:11px 12px}
+  .pform input:focus,.pform textarea:focus{outline:2px solid #b8a7e8;outline-offset:1px}
+  .pform .btn{justify-self:start;margin-top:4px}
+  .hp{position:absolute;left:-9999px}
+  .sent{display:none;margin-top:22px;color:#fff;font-weight:600}
 
   footer{border-top:1px solid var(--line);padding:30px 0 40px;font-size:14px;color:var(--ink-2)}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
@@ -152,13 +161,30 @@
     <div class="eyebrow">Present</div>
     <h2>Have something that runs?</h2>
     <p>One rule: demo a working product or code, live. Seven minutes, seven minutes of questions. Tell us what you'd show and we'll find you a Thursday.</p>
-    <a class="btn" href="mailto:nick@levenstein.net?subject=Canggu%20AI%20Meetup%20%E2%80%94%20I%27d%20like%20to%20present">Propose a demo</a>
+    <p class="sent" id="sent">Thanks — your proposal is in. We'll be in touch.</p>
+    <form class="pform" action="https://formsubmit.co/admin@levenstein.net" method="POST">
+      <input type="hidden" name="_subject" value="Canggu AI Meetup — demo proposal">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="https://levenstein.net/meetup/?sent=1#present">
+      <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+      <div class="row2">
+        <label>Name<input type="text" name="name" required></label>
+        <label>Email<input type="email" name="email" required></label>
+      </div>
+      <div class="row2">
+        <label><div>WhatsApp <span>(optional)</span></div><input type="tel" name="whatsapp"></label>
+        <label><div>Project or product link <span>(optional)</span></div><input type="url" name="link" placeholder="https://"></label>
+      </div>
+      <label>What would you demo live?<textarea name="demo" rows="4" required placeholder="What it does, who uses it, what you'll show running on stage."></textarea></label>
+      <button class="btn" type="submit">Propose a demo</button>
+    </form>
+    <script>if(location.search.indexOf('sent=1')>-1){document.getElementById('sent').style.display='block';document.querySelector('.pform').style.display='none';}</script>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <div><a href="/">Nicholas Levenstein</a> · <a href="mailto:nick@levenstein.net">nick@levenstein.net</a></div>
+    <div><a href="/">Nicholas Levenstein</a></div>
     <div>Canggu AI Meetup · Tropical Nomad, Canggu</div>
   </div>
 </footer>
