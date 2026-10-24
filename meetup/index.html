@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Canggu AI Meetup</title>
+<meta name="description" content="Two builders, seven minutes each, then the Hotseat. Live demos only. Thursdays at Tropical Nomad, Canggu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#1f2328;--ink-2:#4b5563;--ink-3:#8a929c;--line:#e5e7eb;--paper:#fff;--paper-2:#f6f7f9;--navy:#0b2a4a;--c:#5b3fa6;--maxw:1120px}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:"Instrument Sans",Inter,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .serif{font-family:"Instrument Serif",Georgia,serif;font-weight:400}
+  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+  header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{font-weight:600}.brand span{color:var(--ink-3);font-weight:400}
+  nav a{font-size:14px;color:var(--ink-2);margin-left:22px}
+
+  .hero{padding:64px 0 48px;border-bottom:5px solid var(--c)}
+  .hero h1{font-size:clamp(34px,4.6vw,56px);line-height:1.08;margin:14px 0 18px;font-weight:600;letter-spacing:-.02em}
+  .hero .line{font-size:clamp(18px,2.2vw,24px);color:var(--ink-2);max-width:60ch;margin:0 0 26px}
+  .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);max-width:860px}
+  .fact{background:#fff;padding:16px 18px}
+  .fact b{display:block;font-size:22px;font-weight:600;letter-spacing:-.01em}
+  .fact span{font-size:12px;color:var(--ink-3)}
+  @media(max-width:700px){.facts{grid-template-columns:repeat(2,1fr)}}
+  .btn{display:inline-block;padding:12px 20px;border-radius:4px;font-weight:600;font-size:14px;background:var(--c);color:#fff;margin-top:26px}
+  .btn.ghost{background:transparent;color:var(--c);border:1px solid var(--c);margin-left:8px}
+
+  .rule{padding:48px 0;background:var(--paper-2)}
+  .rule .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  @media(max-width:800px){.rule .wrap{grid-template-columns:1fr}}
+  .rule h2{font-size:clamp(24px,3vw,32px);margin:10px 0 10px;font-weight:400}
+  .rule p{color:var(--ink-2);margin:0 0 10px}
+  .run{border:1px solid var(--line);background:#fff;border-radius:6px;padding:6px 0}
+  .run div{display:grid;grid-template-columns:52px 1fr 44px;padding:9px 16px;font-size:14px;border-bottom:1px solid var(--line)}
+  .run div:last-child{border-bottom:0}
+  .run div span:first-child{color:var(--ink-3);font-variant-numeric:tabular-nums}
+  .run div span:last-child{text-align:right;color:var(--ink-3)}
+
+  .episodes{padding:64px 0}
+  .episodes h2{font-size:clamp(26px,3.4vw,38px);margin:12px 0 28px;font-weight:600;letter-spacing:-.015em}
+  .ep{display:block;max-width:760px;padding:30px 0;border-top:1px solid var(--line);align-items:start}
+  .ep:last-child{border-bottom:1px solid var(--line)}
+  .ep .date{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--c);font-weight:700}
+  .ep h3{font-size:24px;margin:8px 0 10px;font-weight:600;letter-spacing:-.01em}
+  .ep p{color:var(--ink-2);margin:0 0 10px;font-size:15px}
+  .ep ul{margin:0 0 12px;padding-left:18px;color:var(--ink-2);font-size:15px}
+  .ep .links a{font-size:13px;font-weight:600;color:var(--c);margin-right:16px}
+
+  .present{padding:56px 0 72px;background:var(--navy);color:#e8eef5}
+  .present .eyebrow{color:#b8a7e8}
+  .present h2{font-size:clamp(26px,3.4vw,38px);margin:12px 0 12px;font-weight:600}
+  .present p{color:#b9c6d6;max-width:62ch}
+  .present .btn{background:#fff;color:var(--navy)}
+
+  footer{border-top:1px solid var(--line);padding:30px 0 40px;font-size:14px;color:var(--ink-2)}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer a{color:var(--ink)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="/"><span>Nicholas Levenstein /</span> Canggu AI Meetup</a>
+    <nav><a href="#episodes">Episodes</a><a href="#present">Present</a><a href="/">← Home</a></nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Canggu, Bali · Thursdays · Tropical Nomad</div>
+    <h1>Two builders. Seven minutes each. Then the Hotseat.</h1>
+    <p class="line">Real AI in production, shown live. If it doesn't run on stage, it doesn't get a slot. Then the room takes the mic — the wins, the fails, and what it actually cost.</p>
+    <div class="facts">
+      <div class="fact"><b>45 min</b><span>Programme, to the minute</span></div>
+      <div class="fact"><b>7 + 7</b><span>Present, then Q&amp;A</span></div>
+      <div class="fact"><b>Live only</b><span>Working product or code. No slide-only talks.</span></div>
+      <div class="fact"><b>6:30</b><span>Doors · programme 6:40</span></div>
+    </div>
+    <a class="btn" href="#present">Present at the next one</a>
+  </div>
+</section>
+
+<section class="rule">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">The format</div>
+      <h2 class="serif">We balance interesting presentations with the chance to actually meet each other.</h2>
+      <p>Each presenter gets an identical 14-minute block. The Hotseat is ten minutes for anyone in the room to describe a real attempt to use AI in their business — what worked, what didn't, what it cost in tokens and sleep.</p>
+      <p>Hosted by Nicholas Levenstein. Venue sponsor: Tropical Nomad.</p>
+    </div>
+    <div class="run">
+      <div><span>0:00</span><span>Welcome &amp; housekeeping</span><span>2</span></div>
+      <div><span>0:02</span><span>A word from the venue</span><span>1</span></div>
+      <div><span>0:03</span><span>Builder 1 — presentation</span><span>7</span></div>
+      <div><span>0:10</span><span>Builder 1 — Q&amp;A</span><span>7</span></div>
+      <div><span>0:17</span><span>A word from the sponsor</span><span>1</span></div>
+      <div><span>0:18</span><span>Builder 2 — presentation</span><span>7</span></div>
+      <div><span>0:25</span><span>Builder 2 — Q&amp;A</span><span>7</span></div>
+      <div><span>0:32</span><span>The Hotseat 🔥</span><span>10</span></div>
+      <div><span>0:42</span><span>Thank you &amp; WhatsApp group</span><span>1</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="episodes" id="episodes">
+  <div class="wrap">
+    <div class="eyebrow">Episodes</div>
+    <h2>What has been shown so far</h2>
+
+    <article class="ep">
+      <div class="date">22 October 2026 · Episode 4</div>
+      <h3>October session</h3>
+      <p>Recap to follow.</p>
+    </article>
+
+    <article class="ep">
+      <div class="date">8 October 2026 · Episode 3</div>
+      <h3>Grokbot and Jeeves</h3>
+      <p>Two agents, shown running. Recap to follow.</p>
+    </article>
+
+    <article class="ep">
+      <div class="date">24 September 2026 · Episode 2</div>
+      <h3>What eleven agents actually cost</h3>
+      <p>Nick opened the books on running a small firm on agents — a planned monthly allowance gone in a day, the "38 agents" that were really 11, and the key-person question investors ask. Chris Wijnia (Chief Innovation Officer, Agio Digital) took the technical questions.</p>
+      <ul>
+        <li>Fetch, don't paste: connect the CRM and the note-taker instead of loading transcripts.</li>
+        <li>Turn repeat work into skills; watch scheduled loops — frequency drives cost more than cleverness.</li>
+        <li>No RAG at this size; connectors plus rules files plus tests.</li>
+        <li>Hotseat: agent sandboxes, a group photo-book app, e-commerce automation.</li>
+      </ul>
+    </article>
+
+    <article class="ep">
+      <div class="date">23 July 2026 · Episode 1</div>
+      <h3>Miranesia &amp; Hermes</h3>
+      <p><strong>Frederic Bazin</strong> — Miranesia, a daily-updated feed of everything on in Bali for the next 30 days, vibe-coded in 12 hours; LLMs discover the sources, clean the copy and write the code. <strong>Marcel J Reinosa</strong> — running a multi-million-dollar construction enterprise on Nous Research's Hermes agent: planning, estimates, operations.</p>
+      <div class="links"><a href="https://miranesia.com">miranesia.com →</a></div>
+    </article>
+  </div>
+</section>
+
+<section class="present" id="present">
+  <div class="wrap">
+    <div class="eyebrow">Present</div>
+    <h2>Have something that runs?</h2>
+    <p>One rule: demo a working product or code, live. Seven minutes, seven minutes of questions. Tell us what you'd show and we'll find you a Thursday.</p>
+    <a class="btn" href="mailto:nick@levenstein.net?subject=Canggu%20AI%20Meetup%20%E2%80%94%20I%27d%20like%20to%20present">Propose a demo</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><a href="/">Nicholas Levenstein</a> · <a href="mailto:nick@levenstein.net">nick@levenstein.net</a></div>
+    <div>Canggu AI Meetup · Tropical Nomad, Canggu</div>
+  </div>
+</footer>
+</body>
+</html>
