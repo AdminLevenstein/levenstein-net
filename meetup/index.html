@@ -5,82 +5,114 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Canggu AI Meetup</title>
 <meta name="description" content="Two builders, seven minutes each, then the Hotseat. Live demos only. Every other Thursday at Tropical Nomad, Canggu.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-  :root{--ink:#1f2328;--ink-2:#4b5563;--ink-3:#8a929c;--line:#e5e7eb;--paper:#fff;--paper-2:#f6f7f9;--navy:#0b2a4a;--c:#5b3fa6;--maxw:1120px}
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;font-family:"Instrument Sans",Inter,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5;-webkit-font-smoothing:antialiased}
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-  .serif{font-family:"Instrument Serif",Georgia,serif;font-weight:400}
-  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
-  header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
-  header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-  .brand{font-weight:600}.brand span{color:var(--ink-3);font-weight:400}
-  nav a{font-size:14px;color:var(--ink-2);margin-left:22px}
+  html{scroll-behavior:smooth} body{margin:0}
+  #cam{--ink:#1f2328;--ink-2:#4b5563;--ink-3:#8a929c;--line:#e5e7eb;--paper:#fff;--paper-2:#f6f7f9;--navy:#0b2a4a;--c:#5b3fa6;--maxw:1120px;
+    margin:0;font-family:"Instrument Sans",Inter,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
+  #cam *{box-sizing:border-box}
+  #cam a{color:inherit;text-decoration:none}
+  #cam .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  #cam .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+  #cam header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  #cam header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  #cam .brand{font-weight:600}#cam .brand span{color:var(--ink-3);font-weight:400}
+  #cam nav a{font-size:14px;color:var(--ink-2);margin-left:18px}
+  @media(max-width:640px){#cam nav a{margin-left:12px;font-size:13px}#cam nav .hide-m{display:none}}
 
-  .hero{padding:64px 0 48px;border-bottom:5px solid var(--c)}
-  .hero h1{font-size:clamp(34px,4.6vw,56px);line-height:1.08;margin:14px 0 18px;font-weight:600;letter-spacing:-.02em}
-  .hero .line{font-size:clamp(18px,2.2vw,24px);color:var(--ink-2);max-width:60ch;margin:0 0 26px}
-  .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);max-width:860px}
-  .fact{background:#fff;padding:16px 18px}
-  .fact b{display:block;font-size:22px;font-weight:600;letter-spacing:-.01em}
-  .fact span{font-size:12px;color:var(--ink-3)}
-  @media(max-width:700px){.facts{grid-template-columns:repeat(2,1fr)}}
-  .btn{display:inline-block;padding:12px 20px;border-radius:4px;font-weight:600;font-size:14px;background:var(--c);color:#fff;margin-top:26px}
+  #cam .hero{padding:56px 0 40px;border-bottom:5px solid var(--c)}
+  #cam .hero h1{font-size:clamp(32px,4.6vw,54px);line-height:1.08;margin:14px 0 18px;font-weight:600;letter-spacing:-.02em}
+  #cam .hero .line{font-size:clamp(18px,2.2vw,23px);color:var(--ink-2);max-width:60ch;margin:0 0 26px}
+  #cam .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);max-width:860px}
+  #cam .fact{background:#fff;padding:16px 18px}
+  #cam .fact b{display:block;font-size:22px;font-weight:600;letter-spacing:-.01em}
+  #cam .fact span{font-size:12px;color:var(--ink-3)}
+  @media(max-width:700px){#cam .facts{grid-template-columns:repeat(2,1fr)}}
 
-  .rule{padding:48px 0;background:var(--paper-2)}
-  .rule .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-  @media(max-width:800px){.rule .wrap{grid-template-columns:1fr}}
-  .rule h2{font-size:clamp(24px,3vw,32px);margin:10px 0 10px;font-weight:400}
-  .rule p{color:var(--ink-2);margin:0 0 10px}
-  .run{border:1px solid var(--line);background:#fff;border-radius:6px;padding:6px 0}
-  .run div{display:grid;grid-template-columns:52px 1fr 44px;padding:9px 16px;font-size:14px;border-bottom:1px solid var(--line)}
-  .run div:last-child{border-bottom:0}
-  .run div span:first-child{color:var(--ink-3);font-variant-numeric:tabular-nums}
-  .run div span:last-child{text-align:right;color:var(--ink-3)}
+  /* table of contents */
+  #cam .toc{background:var(--paper-2);border-bottom:1px solid var(--line);padding:22px 0}
+  #cam .toc ol{margin:8px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px 22px}
+  #cam .toc li a{font-size:15px;font-weight:600;color:var(--c)}
+  #cam .toc li a span{color:var(--ink-3);font-weight:400;margin-right:6px}
+  #cam .toc ol ol{margin:4px 0 0 0;gap:6px 16px}
+  #cam .toc ol ol li a{font-weight:500;font-size:14px}
 
-  .episodes{padding:64px 0}
-  .episodes h2{font-size:clamp(26px,3.4vw,38px);margin:12px 0 28px;font-weight:600;letter-spacing:-.015em}
-  .ep{display:block;max-width:760px;padding:30px 0;border-top:1px solid var(--line)}
-  .ep:last-child{border-bottom:1px solid var(--line)}
-  .ep .date{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--c);font-weight:700}
-  .ep h3{font-size:24px;margin:8px 0 10px;font-weight:600;letter-spacing:-.01em}
-  .ep p{color:var(--ink-2);margin:0 0 10px;font-size:15px}
-  .ep ul{margin:0 0 12px;padding-left:18px;color:var(--ink-2);font-size:15px}
-  .ep .links a{font-size:13px;font-weight:600;color:var(--c);margin-right:16px}
+  #cam section.sec{padding:48px 0 36px;border-bottom:1px solid var(--line)}
+  #cam section.sec h2{font-size:clamp(24px,3.2vw,34px);margin:8px 0 18px;font-weight:600;letter-spacing:-.015em}
+  #cam .totop{display:inline-block;margin-top:26px;font-size:13px;font-weight:600;color:var(--c);border:1px solid var(--c);border-radius:4px;padding:8px 14px}
+  #cam .totop:hover{background:var(--c);color:#fff}
+  #cam .fab{position:fixed;right:18px;bottom:18px;z-index:20;background:var(--c);color:#fff;border-radius:999px;padding:12px 16px;font-size:13px;font-weight:600;box-shadow:0 6px 20px rgba(0,0,0,.18);opacity:0;pointer-events:none;transition:opacity .2s}
+  #cam .fab.on{opacity:1;pointer-events:auto}
 
-  .present{padding:56px 0 72px;background:var(--navy);color:#e8eef5}
-  .present .eyebrow{color:#b8a7e8}
-  .present h2{font-size:clamp(26px,3.4vw,38px);margin:12px 0 12px;font-weight:600}
-  .present p{color:#b9c6d6;max-width:62ch}
-  .present .btn{background:#fff;color:var(--navy);border:0;cursor:pointer;font-family:inherit}
-  .pform{max-width:720px;margin-top:26px;display:grid;gap:14px}
-  .pform .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  @media(max-width:640px){.pform .row2{grid-template-columns:1fr}}
-  .pform label{display:grid;gap:6px;font-size:13px;color:#b9c6d6;font-weight:600}
-  .pform label span{font-weight:400;color:#8a9bb0}
-  .pform input,.pform textarea{width:100%;font:inherit;font-size:15px;color:#fff;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.22);border-radius:4px;padding:11px 12px}
-  .pform input:focus,.pform textarea:focus{outline:2px solid #b8a7e8;outline-offset:1px}
-  .pform .btn{justify-self:start;margin-top:4px}
-  .hp{position:absolute;left:-9999px}
-  .sent{display:none;margin-top:22px;color:#fff;font-weight:600}
+  #cam .two{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  @media(max-width:800px){#cam .two{grid-template-columns:1fr}}
+  #cam .sec p{color:var(--ink-2);margin:0 0 10px}
+  #cam .run{border:1px solid var(--line);background:#fff;border-radius:6px;padding:6px 0}
+  #cam .run div{display:grid;grid-template-columns:52px 1fr 44px;padding:9px 16px;font-size:14px;border-bottom:1px solid var(--line)}
+  #cam .run div:last-child{border-bottom:0}
+  #cam .run div span:first-child{color:var(--ink-3);font-variant-numeric:tabular-nums}
+  #cam .run div span:last-child{text-align:right;color:var(--ink-3)}
 
-  footer{border-top:1px solid var(--line);padding:30px 0 40px;font-size:14px;color:var(--ink-2)}
-  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-  footer a{color:var(--ink)}
+  /* episodes */
+  #cam .ep{padding:26px 0;border-top:1px solid var(--line)}
+  #cam .ep:first-of-type{border-top:0;padding-top:4px}
+  #cam .ep .date{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--c);font-weight:700}
+  #cam .ep h3{font-size:22px;margin:8px 0 10px;font-weight:600;letter-spacing:-.01em}
+  #cam .ep p{color:var(--ink-2);margin:0 0 10px;font-size:15px;max-width:76ch}
+  #cam .ep ul{margin:0 0 12px;padding-left:18px;color:var(--ink-2);font-size:15px;max-width:76ch}
+  #cam .ep .links a{font-size:13px;font-weight:600;color:var(--c);margin-right:16px}
+  #cam .media{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0 6px}
+  @media(max-width:800px){#cam .media{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:520px){#cam .media{grid-template-columns:repeat(2,1fr)}}
+  #cam .media a{display:block;aspect-ratio:4/3;overflow:hidden;border-radius:4px;background:var(--paper-2)}
+  #cam .media img{width:100%;height:100%;object-fit:cover;display:block}
+  #cam .media.empty{display:none}
+  #cam .vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:14px 0 6px}
+  #cam .vid{background:#000;border-radius:6px;overflow:hidden;aspect-ratio:16/9;position:relative}
+  #cam .vid.v{aspect-ratio:9/16;max-width:300px}
+  #cam .vid video,#cam .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+  #cam .vcap{font-size:12px;color:var(--ink-3);margin:4px 0 0}
+  #cam .vids.empty{display:none}
+
+  /* present form */
+  #cam .present{background:var(--navy);color:#e8eef5;border-bottom:0}
+  #cam .present .eyebrow{color:#b8a7e8}
+  #cam .present h2{color:#fff}
+  #cam .present p{color:#b9c6d6;max-width:62ch}
+  #cam .btn{display:inline-block;padding:12px 20px;border-radius:4px;font-weight:600;font-size:14px;background:var(--c);color:#fff;margin-top:20px}
+  #cam .present .btn{background:#fff;color:var(--navy);border:0;cursor:pointer;font-family:inherit}
+  #cam .present .totop{color:#fff;border-color:rgba(255,255,255,.5)}
+  #cam .present .totop:hover{background:#fff;color:var(--navy)}
+  #cam .pform{max-width:720px;margin-top:22px;display:grid;gap:14px}
+  #cam .pform .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:640px){#cam .pform .row2{grid-template-columns:1fr}}
+  #cam .pform label{display:grid;gap:6px;font-size:13px;color:#b9c6d6;font-weight:600}
+  #cam .pform label span{font-weight:400;color:#8a9bb0}
+  #cam .pform input,#cam .pform textarea{width:100%;font:inherit;font-size:15px;color:#fff;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.22);border-radius:4px;padding:11px 12px}
+  #cam .pform input:focus,#cam .pform textarea:focus{outline:2px solid #b8a7e8;outline-offset:1px}
+  #cam .pform .btn{justify-self:start;margin-top:4px}
+  #cam .hp{position:absolute;left:-9999px}
+  #cam .sent{display:none;margin-top:22px;color:#fff;font-weight:600}
+
+  #cam footer{padding:30px 0 40px;font-size:14px;color:var(--ink-2)}
+  #cam footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  #cam footer a{color:var(--ink)}
+
+  /* lightbox */
+  #cam .lb{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:50;padding:20px;cursor:zoom-out}
+  #cam .lb.on{display:flex}
+  #cam .lb img{max-width:100%;max-height:100%;object-fit:contain}
 </style>
 </head>
 <body>
+<div id="cam">
 <header>
   <div class="wrap">
     <a class="brand" href="/"><span>Nicholas Levenstein /</span> Canggu AI Meetup</a>
-    <nav><a href="#episodes">Episodes</a><a href="#present">Present</a><a href="/">← Home</a></nav>
+    <nav><a href="#toc" class="hide-m">Contents</a><a href="#episodes">Episodes</a><a href="#present">Present</a><a href="/">← Home</a></nav>
   </div>
 </header>
 
+<a id="top"></a>
 <section class="hero">
   <div class="wrap">
     <div class="eyebrow">Canggu, Bali · Every other Thursday · Tropical Nomad</div>
@@ -92,18 +124,53 @@
       <div class="fact"><b>Live only</b><span>Working product or code. No slide-only talks.</span></div>
       <div class="fact"><b>6:30</b><span>Doors, every other Thursday · programme 6:40</span></div>
     </div>
-    <a class="btn" href="#present">Present at the next one</a>
   </div>
 </section>
 
-<section class="rule">
+<!-- TABLE OF CONTENTS -->
+<nav class="toc" id="toc" aria-label="Table of contents">
   <div class="wrap">
-    <div>
-      <div class="eyebrow">The format</div>
-      <h2 class="serif">We balance interesting presentations with the chance to actually meet each other.</h2>
-      <p>Each presenter gets an identical 14-minute block. The Hotseat is ten minutes for anyone in the room to describe a real attempt to use AI in their business — what worked, what didn't, what it cost in tokens and sleep.</p>
-      <p>Hosted by Nicholas Levenstein. Venue sponsor: Tropical Nomad.</p>
+    <div class="eyebrow">Contents</div>
+    <ol>
+      <li><a href="#format"><span>1</span>The format</a></li>
+      <li><a href="#run"><span>2</span>Run of the evening</a></li>
+      <li><a href="#episodes"><span>3</span>Episodes</a>
+        <ol>
+          <li><a href="#ep-2026-10-22"><span>3.1</span>22 Oct 2026</a></li>
+          <li><a href="#ep-2026-10-08"><span>3.2</span>8 Oct 2026 — Grokbot and Jeeves</a></li>
+          <li><a href="#ep-2026-09-24"><span>3.3</span>24 Sep 2026 — What eleven agents cost</a></li>
+          <li><a href="#ep-2026-07-23"><span>3.4</span>23 Jul 2026 — Miranesia &amp; Hermes</a></li>
+        </ol>
+      </li>
+      <li><a href="#present"><span>4</span>Present at the next one</a></li>
+    </ol>
+  </div>
+</nav>
+
+<!-- 1 FORMAT -->
+<section class="sec" id="format">
+  <div class="wrap">
+    <div class="eyebrow">1 · The format</div>
+    <h2>We balance interesting presentations with the chance to actually meet each other.</h2>
+    <div class="two">
+      <div>
+        <p>Each presenter gets an identical 14-minute block: seven minutes to show something that runs, seven minutes of questions. Two presenters a night.</p>
+        <p>The Hotseat is ten minutes for anyone in the room to describe a real attempt to use AI in their business — what worked, what didn't, what it cost in tokens and sleep.</p>
+      </div>
+      <div>
+        <p>One rule for presenters: demo a working product or code, live. No slide-only talks.</p>
+        <p>Hosted by Nicholas Levenstein. Venue sponsor: Tropical Nomad, Canggu. Every other Thursday; doors 6:30, programme 6:40.</p>
+      </div>
     </div>
+    <a class="totop" href="#top">↑ Return to Top</a>
+  </div>
+</section>
+
+<!-- 2 RUN OF SHOW -->
+<section class="sec" id="run">
+  <div class="wrap">
+    <div class="eyebrow">2 · Run of the evening</div>
+    <h2>45 minutes, to the minute</h2>
     <div class="run">
       <div><span>0:00</span><span>Welcome &amp; housekeeping</span><span>2</span></div>
       <div><span>0:02</span><span>A word from the venue</span><span>1</span></div>
@@ -115,28 +182,34 @@
       <div><span>0:32</span><span>The Hotseat 🔥</span><span>10</span></div>
       <div><span>0:42</span><span>Thank you &amp; WhatsApp group</span><span>1</span></div>
     </div>
+    <a class="totop" href="#top">↑ Return to Top</a>
   </div>
 </section>
 
-<section class="episodes" id="episodes">
+<!-- 3 EPISODES -->
+<section class="sec" id="episodes">
   <div class="wrap">
-    <div class="eyebrow">Episodes</div>
+    <div class="eyebrow">3 · Episodes</div>
     <h2>What has been shown so far</h2>
 
-    <article class="ep">
-      <div class="date">22 October 2026 · Episode 4</div>
+    <article class="ep" id="ep-2026-10-22">
+      <div class="date">3.1 · 22 October 2026 · Episode 4</div>
       <h3>October session</h3>
       <p>Recap to follow.</p>
+      <div class="vids" data-session="2026-10-22"></div>
+      <div class="media" data-session="2026-10-22"></div>
     </article>
 
-    <article class="ep">
-      <div class="date">8 October 2026 · Episode 3</div>
+    <article class="ep" id="ep-2026-10-08">
+      <div class="date">3.2 · 8 October 2026 · Episode 3</div>
       <h3>Grokbot and Jeeves</h3>
       <p>Two agents, shown running. Recap to follow.</p>
+      <div class="vids" data-session="2026-10-08"></div>
+      <div class="media" data-session="2026-10-08"></div>
     </article>
 
-    <article class="ep">
-      <div class="date">24 September 2026 · Episode 2</div>
+    <article class="ep" id="ep-2026-09-24">
+      <div class="date">3.3 · 24 September 2026 · Episode 2</div>
       <h3>What eleven agents actually cost</h3>
       <p>Nick opened the books on running a small firm on agents — a planned monthly allowance gone in a day, the "38 agents" that were really 11, and the key-person question investors ask. Chris Wijnia (Chief Innovation Officer, Agio Digital) took the technical questions.</p>
       <ul>
@@ -145,20 +218,27 @@
         <li>No RAG at this size; connectors plus rules files plus tests.</li>
         <li>Hotseat: agent sandboxes, a group photo-book app, e-commerce automation.</li>
       </ul>
+      <div class="vids" data-session="2026-09-24"></div>
+      <div class="media" data-session="2026-09-24"></div>
     </article>
 
-    <article class="ep">
-      <div class="date">23 July 2026 · Episode 1</div>
+    <article class="ep" id="ep-2026-07-23">
+      <div class="date">3.4 · 23 July 2026 · Episode 1</div>
       <h3>Miranesia &amp; Hermes</h3>
       <p><strong>Frederic Bazin</strong> — Miranesia, a daily-updated feed of everything on in Bali for the next 30 days, vibe-coded in 12 hours; LLMs discover the sources, clean the copy and write the code. <strong>Marcel J Reinosa</strong> — running a multi-million-dollar construction enterprise on Nous Research's Hermes agent: planning, estimates, operations.</p>
       <div class="links"><a href="https://miranesia.com">miranesia.com →</a></div>
+      <div class="vids" data-session="2026-07-23"></div>
+      <div class="media" data-session="2026-07-23"></div>
     </article>
+
+    <a class="totop" href="#top">↑ Return to Top</a>
   </div>
 </section>
 
-<section class="present" id="present">
+<!-- 4 PRESENT -->
+<section class="sec present" id="present">
   <div class="wrap">
-    <div class="eyebrow">Present</div>
+    <div class="eyebrow">4 · Present</div>
     <h2>Have something that runs?</h2>
     <p>One rule: demo a working product or code, live. Seven minutes, seven minutes of questions. Tell us what you'd show and we'll find you a slot.</p>
     <p class="sent" id="sent">Thanks — your proposal is in. We'll be in touch.</p>
@@ -178,7 +258,7 @@
       <label>What would you demo live?<textarea name="demo" rows="4" required placeholder="What it does, who uses it, what you'll show running on stage."></textarea></label>
       <button class="btn" type="submit">Propose a demo</button>
     </form>
-    <script>if(location.search.indexOf('sent=1')>-1){document.getElementById('sent').style.display='block';document.querySelector('.pform').style.display='none';}</script>
+    <a class="totop" href="#top">↑ Return to Top</a>
   </div>
 </section>
 
@@ -188,5 +268,59 @@
     <div>Canggu AI Meetup · Tropical Nomad, Canggu</div>
   </div>
 </footer>
+
+<a class="fab" id="fab" href="#top">↑ Top</a>
+<div class="lb" id="lb"><img alt=""></div>
+</div>
+
+<script>
+(function(){
+  // Media per session. Files live in /meetup/media/<session>/ in the repo.
+  // photos: filenames in that folder. videos: {file:'x.mp4', poster:'x.jpg', v:true if vertical, cap:'caption'} or {yt:'YouTubeID', cap:'caption'}.
+  // Anything that is not there yet is simply not shown.
+  var MEDIA = {
+    "2026-10-22": { photos: [], videos: [ {yt:"", file:"", cap:"22 October — compilation"} ] },
+    "2026-10-08": { photos: ["01.jpg","02.jpg","03.jpg"], videos: [ {yt:"", file:"", cap:"Grokbot and Jeeves — full session"} ] },
+    "2026-09-24": { photos: ["01.jpg","02.jpg","03.jpg","04.jpg","05.jpg","06.jpg","07.jpg","08.jpg"], videos: [ {yt:"", file:"", v:true, cap:"50-second cut"} ] },
+    "2026-07-23": { photos: [], videos: [] }
+  };
+  var base = "/meetup/media/";
+  Object.keys(MEDIA).forEach(function(s){
+    var m = MEDIA[s];
+    var grid = document.querySelector('.media[data-session="'+s+'"]');
+    var vids = document.querySelector('.vids[data-session="'+s+'"]');
+    grid.classList.add('empty'); vids.classList.add('empty');
+    m.photos.forEach(function(f){
+      var a = document.createElement('a'); a.href = base+s+'/'+f;
+      var img = new Image(); img.alt = 'Canggu AI Meetup, '+s; img.loading = 'lazy';
+      img.onload = function(){ grid.classList.remove('empty'); };
+      img.onerror = function(){ a.remove(); };
+      a.onclick = function(e){ e.preventDefault(); var lb=document.getElementById('lb'); lb.querySelector('img').src=a.href; lb.classList.add('on'); };
+      img.src = a.href; a.appendChild(img); grid.appendChild(a);
+    });
+    m.videos.forEach(function(v){
+      var box = document.createElement('div');
+      var wrap = document.createElement('div'); wrap.className = 'vid'+(v.v?' v':'');
+      if (v.yt) {
+        var ifr = document.createElement('iframe'); ifr.src = 'https://www.youtube-nocookie.com/embed/'+v.yt; ifr.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'; ifr.allowFullscreen = true;
+        wrap.appendChild(ifr); vids.classList.remove('empty');
+      } else if (v.file) {
+        var vd = document.createElement('video'); vd.controls = true; vd.preload = 'metadata'; vd.playsInline = true;
+        if (v.poster) vd.poster = base+s+'/'+v.poster;
+        vd.onloadedmetadata = function(){ vids.classList.remove('empty'); };
+        vd.onerror = function(){ box.remove(); };
+        vd.src = base+s+'/'+v.file; wrap.appendChild(vd);
+      } else { return; }
+      box.appendChild(wrap);
+      if (v.cap) { var c = document.createElement('div'); c.className='vcap'; c.textContent = v.cap; box.appendChild(c); }
+      vids.appendChild(box);
+    });
+  });
+  document.getElementById('lb').onclick = function(){ this.classList.remove('on'); };
+  var fab = document.getElementById('fab');
+  window.addEventListener('scroll', function(){ fab.classList.toggle('on', window.scrollY > 500); }, {passive:true});
+  if (location.search.indexOf('sent=1') > -1) { document.getElementById('sent').style.display='block'; document.querySelector('.pform').style.display='none'; }
+})();
+</script>
 </body>
 </html>
