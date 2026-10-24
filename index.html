@@ -16,12 +16,15 @@
   a{color:inherit;text-decoration:none}
   main{flex:1;display:flex;align-items:center}
   .wrap{width:100%;max-width:880px;margin:0 auto;padding:32px 24px}
-  .top{display:grid;grid-template-columns:120px 1fr;gap:28px;align-items:center;margin-bottom:32px}
+  .top{display:grid;grid-template-columns:120px 1fr;gap:28px;align-items:center;margin-bottom:26px}
   .top .av{width:120px;height:120px;border-radius:50%;background:#dfe3e8 url(portrait-capture.jpg) no-repeat 50% 75.82%/237.04% auto}
   h1{font-size:28px;margin:0 0 4px;font-weight:600;letter-spacing:-.01em}
   .where{font-size:14px;color:var(--ink-3);margin:0 0 10px}
   .about{font-size:17px;color:var(--ink-2);margin:0;max-width:60ch}
   .links{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .links .g{grid-column:1/-1;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin:6px 0 -4px}
+  .links .g:first-child{margin-top:0}
+  .about b{font-weight:600;color:var(--ink)}
   .link{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--line);border-left:5px solid var(--c);border-radius:4px}
   .link:hover{background:#f6f7f9}
   .link b{display:block;font-size:16px;font-weight:600}
@@ -48,17 +51,20 @@
       <div>
         <h1>Nicholas Levenstein</h1>
         <p class="where">Canggu, Bali, Indonesia</p>
-        <p class="about">I manage a Bitcoin Futures and Options fund, the ‘Shadow Edge’ Crypto Derivatives Fund. I also trade physical commodities out of Indonesia and run two groups in Bali — one for AI builders, one for business owners. I have two sons: Max, who lives here with me, and Leon, who is detained in Russia.</p>
+        <p class="about">My work has three parts. <b>Trading</b> — I manage a Bitcoin Futures and Options fund, the ‘Shadow Edge’ Crypto Derivatives Fund, and trade physical commodities out of Indonesia. <b>Community</b> — I run two groups in Bali: the Canggu AI Meetup for builders and the Golden Hour Club for business owners. <b>Family and advocacy</b> — I have two sons. Max lives here with me; Leon is detained in Russia, and I am working to bring him home.</p>
       </div>
     </div>
 
     <div class="links">
+      <div class="g">Professional trading</div>
       <a class="link" style="--c:var(--d1)" href="https://nlcfunds.com"><div><b>NLC Funds</b><span>CMFDH II and Shadow Edge</span></div><i>→</i></a>
       <a class="link" style="--c:var(--d2)" href="https://www.indojackcoffee.com/"><div><b>IndoJack</b><span>Specialty Indonesian coffee, Bali to America</span></div><i>→</i></a>
+      <div class="g">Community</div>
+      <a class="link" style="--c:var(--d6)" href="/meetup/"><div><b>Canggu AI Meetup</b><span>Every other Thursday at Tropical Nomad</span></div><i>→</i></a>
+      <a class="link" style="--c:var(--d5)" href="https://baligoldenhour.com/"><div><b>Golden Hour Club</b><span>For people who run businesses in Bali</span></div><i>→</i></a>
+      <div class="g">Family and advocacy</div>
       <a class="link" style="--c:var(--d4)" href="https://bringleonhome.org"><div><b>Bring Leon Home</b><span>My older son, detained in Russia</span></div><i>→</i></a>
       <a class="link" style="--c:var(--d3)" href="https://riceandrobots.com"><div><b>Rice &amp; Robots</b><span>Max and the Canggu rice farmers</span></div><i>→</i></a>
-      <a class="link" style="--c:var(--d6)" href="/meetup/"><div><b>Canggu AI Meetup</b><span>Thursdays at Tropical Nomad</span></div><i>→</i></a>
-      <a class="link" style="--c:var(--d5)" href="https://baligoldenhour.com/"><div><b>Golden Hour Club</b><span>For people who run businesses in Bali</span></div><i>→</i></a>
     </div>
   </div>
 </main>
