@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nicholas Levenstein</title>
-<meta name="description" content="Nicholas Levenstein — Canggu, Bali. Fund manager, commodity trader, two sons.">
+<meta name="description" content="Nicholas Levenstein — derivatives trader in Canggu, Bali. Runs Nicholas Levenstein &amp; Co, a hedge fund firm, plus a coffee business, two Bali communities and two family causes.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -30,6 +30,20 @@
   .link b{display:block;font-size:16px;font-weight:600}
   .link span{display:block;font-size:13px;color:var(--ink-2)}
   .link i{margin-left:auto;font-style:normal;color:var(--c);font-weight:600}
+  .links .cell{display:flex;flex-direction:column;gap:10px}
+  .links .cell .g{margin:0 0 -4px}
+  .hello{margin-top:18px;font-size:14px;color:var(--ink-2)}
+  .hello summary{cursor:pointer;list-style:none;text-align:center}
+  .hello summary::-webkit-details-marker{display:none}
+  .hello summary u{color:var(--d1);font-weight:600;text-underline-offset:3px}
+  .hello form{display:grid;gap:10px;max-width:560px;margin:14px auto 0}
+  .hello .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .hello label{display:grid;gap:4px;font-size:12px;font-weight:600;color:var(--ink-2)}
+  .hello input,.hello textarea{width:100%;font:inherit;font-size:15px;color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:9px 10px;background:#fff}
+  .hello button{justify-self:start;font:inherit;font-weight:600;color:#fff;background:var(--d1);border:0;border-radius:4px;padding:9px 18px;cursor:pointer}
+  .hello .hp{display:none}
+  .hello .sent{display:none;text-align:center;color:var(--d3);font-weight:600}
+  @media(max-width:600px){.hello .row2{grid-template-columns:1fr}}
   footer{padding:18px 24px 26px;font-size:13px;color:var(--ink-3);text-align:center}
   footer a{color:var(--ink)}
   @media(max-width:600px){
@@ -51,23 +65,42 @@
       <div>
         <h1>Nicholas Levenstein</h1>
         <p class="where">Canggu, Bali, Indonesia</p>
-        <p class="about">My work has three parts. <b>Trading</b> — I manage a Bitcoin Futures and Options fund, the ‘Shadow Edge’ Crypto Derivatives Fund, and trade physical commodities out of Indonesia. <b>Community</b> — I run two groups in Bali: the Canggu AI Meetup for builders and the Golden Hour Club for business owners. <b>Family and advocacy</b> — I have two sons. Max lives here with me; Leon is detained in Russia, and I am working to bring him home.</p>
+        <p class="about">I’m a derivatives trader. Most of my time — about 80% of my normal working hours — goes into running <b>Nicholas Levenstein &amp; Co</b>, my hedge fund firm. The rest goes to a coffee business, two Bali communities, and two causes close to home. If you’re an investor, a builder, or just someone who likes trading ideas, I’d enjoy hearing from you about any of my projects.</p>
       </div>
     </div>
 
     <div class="links">
-      <div class="g">Professional trading</div>
-      <a class="link" style="--c:var(--d1)" href="https://nlcfunds.com"><div><b>NLC Funds</b><span>CMFDH II and Shadow Edge</span></div><i>→</i></a>
-      <a class="link" style="--c:var(--d2)" href="https://www.indojackcoffee.com/"><div><b>IndoJack</b><span>Specialty Indonesian coffee, Bali to America</span></div><i>→</i></a>
+      <div class="cell"><div class="g">The fund — my main work</div>
+      <a class="link" style="--c:var(--d1)" href="https://nlcfunds.com"><div><b>NLC Funds</b><span>Shadow Edge Crypto Derivatives Fund. For investors and allocators.</span></div><i>→</i></a></div>
+      <div class="cell"><div class="g">A business I’ve invested in</div>
+      <a class="link" style="--c:var(--d2)" href="https://www.indojackcoffee.com/"><div><b>IndoJack</b><span>Specialty Indonesian coffee, shipped from Bali to the US.</span></div><i>→</i></a></div>
       <div class="g">Community</div>
-      <a class="link" style="--c:var(--d6)" href="/meetup/"><div><b>Canggu AI Meetup</b><span>Every other Thursday at Tropical Nomad</span></div><i>→</i></a>
-      <a class="link" style="--c:var(--d5)" href="https://baligoldenhour.com/"><div><b>Golden Hour Club</b><span>For people who run businesses in Bali</span></div><i>→</i></a>
-      <div class="g">Family and advocacy</div>
-      <a class="link" style="--c:var(--d4)" href="https://bringleonhome.org"><div><b>Bring Leon Home</b><span>My older son, detained in Russia</span></div><i>→</i></a>
-      <a class="link" style="--c:var(--d3)" href="https://riceandrobots.com"><div><b>Rice &amp; Robots</b><span>Max and the Canggu rice farmers</span></div><i>→</i></a>
+      <a class="link" style="--c:var(--d6)" href="/meetup/"><div><b>Canggu AI Meetup</b><span>Builders showing working code, every other Thursday. Come demo something.</span></div><i>→</i></a>
+      <a class="link" style="--c:var(--d5)" href="https://baligoldenhour.com/"><div><b>Golden Hour Club</b><span>For people who run businesses in Bali. New members welcome.</span></div><i>→</i></a>
+      <div class="g">Family</div>
+      <a class="link" style="--c:var(--d4)" href="https://bringleonhome.org"><div><b>Bring Leon Home</b><span>My older son is detained in Russia. This is the campaign to bring him home.</span></div><i>→</i></a>
+      <a class="link" style="--c:var(--d3)" href="https://riceandrobots.com"><div><b>Rice &amp; Robots</b><span>My younger son, Max, and the Canggu rice farmers. I want him to learn about their lives and then use his love of devices and tech to improve those lives.</span></div><i>→</i></a>
     </div>
+
+    <details class="hello" id="hello">
+      <summary>Always happy to meet collaborators and like-minded people. <u>Say hello</u></summary>
+      <p class="sent" id="sent">Thanks — your note is in. I’ll be in touch.</p>
+      <form action="https://formsubmit.co/5cd1103d256b6b62e876c91f7cfb1a29" method="POST">
+        <input type="hidden" name="_subject" value="levenstein.net — hello">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://levenstein.net/?sent=1#hello">
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+        <div class="row2">
+          <label>Name<input type="text" name="name" required></label>
+          <label>Email<input type="email" name="email" required></label>
+        </div>
+        <label>Message<textarea name="message" rows="3" required placeholder="Which project, and what you have in mind."></textarea></label>
+        <button type="submit">Send</button>
+      </form>
+    </details>
   </div>
 </main>
 <footer>© 2026 Nicholas Levenstein</footer>
+<script>if(location.search.indexOf('sent=1')>-1){var h=document.getElementById('hello');h.open=true;document.getElementById('sent').style.display='block';h.querySelector('form').style.display='none';}</script>
 </body>
 </html>
