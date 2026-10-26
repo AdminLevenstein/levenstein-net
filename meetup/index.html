@@ -103,7 +103,7 @@
   #cam .c-b2{background:var(--pink)}#cam .c-b2q{background:#f39abb}#cam .c-hs{background:var(--sun)}
 
   /* episodes */
-  #cam .ep{--ec:var(--violet);scroll-margin-top:76px;padding:32px 0;border-top:1px solid var(--line)}
+  #cam .ep{--ec:var(--violet);padding:32px 0;border-top:1px solid var(--line)}
   #cam .ep:first-of-type{border-top:0;padding-top:4px}
   #cam .ep.e4{--ec:var(--teal)}#cam .ep.e3{--ec:var(--pink)}#cam .ep.e2{--ec:var(--sun)}#cam .ep.e1{--ec:var(--violet)}
   #cam .ep .date{display:inline-block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--ec);font-weight:700;padding:5px 12px;border-radius:999px}
@@ -114,17 +114,6 @@
   #cam .ep li::before{content:"";position:absolute;left:2px;top:.55em;width:9px;height:9px;border-radius:2px;background:var(--ec);transform:rotate(45deg)}
   #cam .ep .links a{font-size:14px;font-weight:600;color:var(--ec)}
   #cam .soon{margin-top:14px;padding:18px 20px;border-radius:10px;border:1.5px dashed color-mix(in srgb,var(--ec) 45%,transparent);background:color-mix(in srgb,var(--ec) 6%,#fff);color:var(--ink-2);font-size:14px}
-
-
-  /* episode videos */
-  #cam .epgrid{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:34px;align-items:start;margin-top:14px}
-  #cam .epgrid .epcopy h3{margin-top:0}
-  #cam .vid{margin:0}
-  #cam .vid video{display:block;width:100%;aspect-ratio:9/16;background:var(--night);border-radius:20px;border:3px solid var(--ec);box-shadow:0 16px 36px rgba(29,27,38,.22);object-fit:cover}
-  #cam .vid figcaption{margin-top:10px;font-size:13px;color:var(--ink-3)}
-  #cam .vid figcaption b{color:var(--ec);font-weight:700}
-  #cam .watch{font-style:normal;--ec:var(--pink);display:inline-block;margin-left:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--ec)}
-  @media(max-width:760px){#cam .epgrid{grid-template-columns:1fr;gap:18px}#cam .vid{order:2;max-width:320px}}
 
   /* galleries */
   #cam .bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:170px;grid-auto-flow:dense;gap:8px;margin:20px 0 6px}
@@ -142,6 +131,19 @@
   #cam .duo span{position:absolute;left:10px;bottom:10px;background:rgba(18,26,47,.75);color:#fff;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px}
   @media(max-width:560px){#cam .duo{grid-template-columns:1fr}}
   #cam .gcount{font-size:13px;color:var(--ink-3)}
+
+  /* film */
+  #cam .film{display:grid;grid-template-columns:minmax(0,260px) 1fr;gap:22px;align-items:start;margin:20px 0 6px}
+  #cam .film .frame{position:relative;border-radius:12px;overflow:hidden;background:var(--night);box-shadow:0 14px 34px -18px rgba(18,26,47,.65)}
+  #cam .film .frame::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:12px;box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--ec) 55%,transparent)}
+  #cam .film video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:var(--night)}
+  #cam .film .meta{padding-top:4px}
+  #cam .film .tag{display:inline-flex;align-items:center;gap:7px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--ec)}
+  #cam .film .tag::before{content:"";width:9px;height:9px;border-radius:2px;background:var(--ec);transform:rotate(45deg)}
+  #cam .film .meta h4{margin:10px 0 8px;font-size:17px;font-weight:700;letter-spacing:-.01em;color:var(--ink)}
+  #cam .film .meta p{margin:0 0 12px;font-size:14.5px;color:var(--ink-2);max-width:52ch}
+  #cam .film .runtime{font-size:13px;color:var(--ink-3)}
+  @media(max-width:700px){#cam .film{grid-template-columns:1fr;gap:16px}#cam .film .frame{max-width:300px;margin:0 auto}}
 
   /* present */
   #cam .present{position:relative;color:#e8eef5;border-bottom:0;background:#121a2f url(IMG_0694.jpg) center 30%/cover no-repeat}
@@ -214,8 +216,8 @@
       <li><a href="#run"><span>2</span>Run of the evening</a></li>
       <li><a href="#episodes"><span>3</span>Episodes</a>
         <ol>
-          <li><a href="#ep-2026-10-22"><span>3.1</span>22 Oct 2026 <em class="watch">▶ video</em></a></li>
-          <li><a href="#ep-2026-10-08"><span>3.2</span>8 Oct 2026 — Grokbot and Jeeves <em class="watch">▶ video</em></a></li>
+          <li><a href="#ep-2026-10-22"><span>3.1</span>22 Oct 2026</a></li>
+          <li><a href="#ep-2026-10-08"><span>3.2</span>8 Oct 2026 — Grokbot and Jeeves</a></li>
           <li><a href="#ep-2026-09-24"><span>3.3</span>24 Sep 2026 — What eleven agents cost</a></li>
           <li><a href="#ep-2026-07-23"><span>3.4</span>23 Jul 2026 — Miranesia &amp; Hermes</a></li>
         </ol>
@@ -278,29 +280,35 @@
 
     <article class="ep e4" id="ep-2026-10-22">
       <div class="date">3.1 · 22 October 2026 · Episode 4</div>
-      <div class="epgrid">
-        <figure class="vid">
-          <video controls playsinline preload="none" poster="meetup-2026-10-22-poster.jpg"><source src="meetup-2026-10-22.mp4" type="video/mp4"></video>
-          <figcaption><b>▶ Highlights · 2:55</b> · filmed &amp; edited by Adhis</figcaption>
-        </figure>
-        <div class="epcopy">
-          <h3>October session</h3>
-          <p>Watch the highlights from the evening. The written recap is to follow.</p>
-          <div class="soon">Photos from this session are on their way.</div>
+      <h3>October session</h3>
+      <p>Recap to follow.</p>
+      <div class="film">
+        <div class="frame">
+          <video controls playsinline preload="metadata" aria-label="Canggu AI Meetup, 22 October 2026" src="https://www.dropbox.com/scl/fi/nnpqp0rfwn6js8eyvznyi/2026-10-22-Canggu-AI-Meetup.mp4?rlkey=esolulvrzmv8gad8qcl4429lj&amp;raw=1#t=0.1"></video>
+        </div>
+        <div class="meta">
+          <div class="tag">The recording</div>
+          <h4>The October session, as it ran</h4>
+          <p>Cut from the room on the night — the demos, the questions and the Hotseat.</p>
+          <div class="runtime">2 min 55 sec · vertical</div>
         </div>
       </div>
+      <div class="soon">Photos from this session are on their way.</div>
     </article>
 
     <article class="ep e3" id="ep-2026-10-08">
       <div class="date">3.2 · 8 October 2026 · Episode 3</div>
-      <div class="epgrid">
-        <figure class="vid">
-          <video controls playsinline preload="none" poster="meetup-2026-10-08-poster.jpg"><source src="meetup-2026-10-08-grokbot-jeeves.mp4" type="video/mp4"></video>
-          <figcaption><b>▶ Highlights · 1:34</b> · filmed &amp; edited by Adhis</figcaption>
-        </figure>
-        <div class="epcopy">
-          <h3>Grokbot and Jeeves</h3>
-          <p>Two agents, shown running. Watch the highlights; the written recap is to follow.</p>
+      <h3>Grokbot and Jeeves</h3>
+      <p>Two agents, shown running. Recap to follow.</p>
+      <div class="film">
+        <div class="frame">
+          <video controls playsinline preload="metadata" aria-label="Canggu AI Meetup, 8 October 2026 — Grokbot and Jeeves" src="https://www.dropbox.com/scl/fi/z5zka3oylt8njeswymorv/2026-10-08-Canggu-AI-Meetup-Grokbot-and-Jeeves.mp4?rlkey=l82mr1tvhm7qdq5s5dg59lr1p&amp;raw=1#t=0.1"></video>
+        </div>
+        <div class="meta">
+          <div class="tag">The recording</div>
+          <h4>Grokbot and Jeeves, shown running</h4>
+          <p>Both agents on stage, live. The short cut from the session.</p>
+          <div class="runtime">1 min 34 sec · vertical</div>
         </div>
       </div>
       <div class="duo" data-set="oct8">
