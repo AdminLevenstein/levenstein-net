@@ -103,7 +103,7 @@
   #cam .c-b2{background:var(--pink)}#cam .c-b2q{background:#f39abb}#cam .c-hs{background:var(--sun)}
 
   /* episodes */
-  #cam .ep{--ec:var(--violet);padding:32px 0;border-top:1px solid var(--line)}
+  #cam .ep{--ec:var(--violet);scroll-margin-top:76px;padding:32px 0;border-top:1px solid var(--line)}
   #cam .ep:first-of-type{border-top:0;padding-top:4px}
   #cam .ep.e4{--ec:var(--teal)}#cam .ep.e3{--ec:var(--pink)}#cam .ep.e2{--ec:var(--sun)}#cam .ep.e1{--ec:var(--violet)}
   #cam .ep .date{display:inline-block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--ec);font-weight:700;padding:5px 12px;border-radius:999px}
@@ -114,6 +114,17 @@
   #cam .ep li::before{content:"";position:absolute;left:2px;top:.55em;width:9px;height:9px;border-radius:2px;background:var(--ec);transform:rotate(45deg)}
   #cam .ep .links a{font-size:14px;font-weight:600;color:var(--ec)}
   #cam .soon{margin-top:14px;padding:18px 20px;border-radius:10px;border:1.5px dashed color-mix(in srgb,var(--ec) 45%,transparent);background:color-mix(in srgb,var(--ec) 6%,#fff);color:var(--ink-2);font-size:14px}
+
+
+  /* episode videos */
+  #cam .epgrid{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:34px;align-items:start;margin-top:14px}
+  #cam .epgrid .epcopy h3{margin-top:0}
+  #cam .vid{margin:0}
+  #cam .vid video{display:block;width:100%;aspect-ratio:9/16;background:var(--night);border-radius:20px;border:3px solid var(--ec);box-shadow:0 16px 36px rgba(29,27,38,.22);object-fit:cover}
+  #cam .vid figcaption{margin-top:10px;font-size:13px;color:var(--ink-3)}
+  #cam .vid figcaption b{color:var(--ec);font-weight:700}
+  #cam .watch{font-style:normal;--ec:var(--pink);display:inline-block;margin-left:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--ec)}
+  @media(max-width:760px){#cam .epgrid{grid-template-columns:1fr;gap:18px}#cam .vid{order:2;max-width:320px}}
 
   /* galleries */
   #cam .bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:170px;grid-auto-flow:dense;gap:8px;margin:20px 0 6px}
@@ -203,8 +214,8 @@
       <li><a href="#run"><span>2</span>Run of the evening</a></li>
       <li><a href="#episodes"><span>3</span>Episodes</a>
         <ol>
-          <li><a href="#ep-2026-10-22"><span>3.1</span>22 Oct 2026</a></li>
-          <li><a href="#ep-2026-10-08"><span>3.2</span>8 Oct 2026 — Grokbot and Jeeves</a></li>
+          <li><a href="#ep-2026-10-22"><span>3.1</span>22 Oct 2026 <em class="watch">▶ video</em></a></li>
+          <li><a href="#ep-2026-10-08"><span>3.2</span>8 Oct 2026 — Grokbot and Jeeves <em class="watch">▶ video</em></a></li>
           <li><a href="#ep-2026-09-24"><span>3.3</span>24 Sep 2026 — What eleven agents cost</a></li>
           <li><a href="#ep-2026-07-23"><span>3.4</span>23 Jul 2026 — Miranesia &amp; Hermes</a></li>
         </ol>
@@ -267,15 +278,31 @@
 
     <article class="ep e4" id="ep-2026-10-22">
       <div class="date">3.1 · 22 October 2026 · Episode 4</div>
-      <h3>October session</h3>
-      <p>Recap to follow.</p>
-      <div class="soon">Photos from this session are on their way.</div>
+      <div class="epgrid">
+        <figure class="vid">
+          <video controls playsinline preload="none" poster="meetup-2026-10-22-poster.jpg"><source src="meetup-2026-10-22.mp4" type="video/mp4"></video>
+          <figcaption><b>▶ Highlights · 2:55</b> · filmed &amp; edited by Adhis</figcaption>
+        </figure>
+        <div class="epcopy">
+          <h3>October session</h3>
+          <p>Watch the highlights from the evening. The written recap is to follow.</p>
+          <div class="soon">Photos from this session are on their way.</div>
+        </div>
+      </div>
     </article>
 
     <article class="ep e3" id="ep-2026-10-08">
       <div class="date">3.2 · 8 October 2026 · Episode 3</div>
-      <h3>Grokbot and Jeeves</h3>
-      <p>Two agents, shown running. Recap to follow.</p>
+      <div class="epgrid">
+        <figure class="vid">
+          <video controls playsinline preload="none" poster="meetup-2026-10-08-poster.jpg"><source src="meetup-2026-10-08-grokbot-jeeves.mp4" type="video/mp4"></video>
+          <figcaption><b>▶ Highlights · 1:34</b> · filmed &amp; edited by Adhis</figcaption>
+        </figure>
+        <div class="epcopy">
+          <h3>Grokbot and Jeeves</h3>
+          <p>Two agents, shown running. Watch the highlights; the written recap is to follow.</p>
+        </div>
+      </div>
       <div class="duo" data-set="oct8">
         <a class="zoom" href="media/2026-09-24/IMG_3210.jpg" data-cap="8 October — live demo"><img src="media/2026-09-24/IMG_3210.jpg" alt="Presenter demoing in front of the screen" loading="lazy"><span>Live demo</span></a>
         <a class="zoom" href="media/2026-09-24/IMG_3211.jpg" data-cap="8 October — the room"><img src="media/2026-09-24/IMG_3211.jpg" alt="The room during the session" loading="lazy"><span>The room</span></a>
