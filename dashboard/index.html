@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="10800">
+<title>NL&amp;Co Marketing Dashboard</title>
+<style>
+/* === NL&Co Design Tokens === */
+#nlco-dashboard {
+  --bg: #0b0d10;
+  --bg-2: #11151a;
+  --card: #161b22;
+  --line: #222a33;
+  --txt: #e8eaed;
+  --muted: #9aa4b0;
+  --gold: #d9a441;
+  --gold-bright: #f5b945;
+  --green: #3ecf8e;
+  --red: #e5534b;
+  --amber: #e09b13;
+  --blue: #58a6ff;
+  --pos-bg: #12241c;
+  --neg-bg: #2a1815;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+#nlco-dashboard *, #nlco-dashboard *::before, #nlco-dashboard *::after {
+  box-sizing: border-box;
+}
+
+/* === Typography === */
+#nlco-dashboard h1 {
+  color: var(--txt);
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  line-height: 1.2;
+}
+#nlco-dashboard h2 {
+  color: var(--txt);
+  font-size: 22px;
+  font-weight: 700;
+  margin: 24px 0 12px 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+#nlco-dashboard h3 {
+  color: var(--txt);
+  font-size: 18px;
+  font-weight: 700;
+  margin: 16px 0 8px 0;
+}
+#nlco-dashboard .kicker {
+  text-transform: uppercase;
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+#nlco-dashboard .stat-figure {
+  color: var(--gold);
+  font-size: 38px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+#nlco-dashboard .stat-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* === Header === */
+#nlco-dashboard header {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+#nlco-dashboard .header-sub {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* === TOC === */
+#nlco-dashboard .toc {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 24px;
+  margin-bottom: 24px;
+}
+#nlco-dashboard .toc-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--txt);
+  margin-bottom: 8px;
+}
+#nlco-dashboard .toc a {
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 14px;
+  display: inline-block;
+  margin-right: 20px;
+  margin-bottom: 4px;
+}
+#nlco-dashboard .toc a:hover {
+  color: var(--gold-bright);
+  text-decoration: underline;
+}
+
+/* === Cards === */
+#nlco-dashboard .card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+#nlco-dashboard .stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+#nlco-dashboard .stat-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px 24px;
+  text-align: center;
+}
+
+/* === Pills === */
+#nlco-dashboard .pill {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 12px;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+#nlco-dashboard .pill-red { background: var(--neg-bg); color: var(--red); border: 1px solid var(--red); }
+#nlco-dashboard .pill-amber { background: #2a2210; color: var(--amber); border: 1px solid var(--amber); }
+#nlco-dashboard .pill-green { background: var(--pos-bg); color: var(--green); border: 1px solid var(--green); }
+#nlco-dashboard .pill-blue { background: #101d2e; color: var(--blue); border: 1px solid var(--blue); }
+#nlco-dashboard .pill-muted { background: var(--bg-2); color: var(--muted); border: 1px solid var(--line); }
+
+/* === Tables === */
+#nlco-dashboard table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin: 8px 0;
+}
+#nlco-dashboard th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--txt);
+  padding: 8px 12px;
+  border-bottom: 2px solid var(--line);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+#nlco-dashboard td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+#nlco-dashboard tr:last-child td {
+  border-bottom: none;
+}
+#nlco-dashboard .truncate {
+  max-width: 280px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* === Tabs === */
+#nlco-dashboard .tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--line);
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+#nlco-dashboard .tab-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  white-space: nowrap;
+  font-family: inherit;
+  transition: color 0.15s, border-color 0.15s;
+}
+#nlco-dashboard .tab-btn:hover {
+  color: var(--txt);
+}
+#nlco-dashboard .tab-btn.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+#nlco-dashboard .tab-panel {
+  display: none;
+}
+#nlco-dashboard .tab-panel.active {
+  display: block;
+}
+
+/* === Details / Collapse === */
+#nlco-dashboard details {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin: 8px 0;
+}
+#nlco-dashboard summary {
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--txt);
+  font-size: 14px;
+  list-style: none;
+}
+#nlco-dashboard summary::before {
+  content: "\25B6\00a0";
+  font-size: 11px;
+  color: var(--muted);
+}
+#nlco-dashboard details[open] summary::before {
+  content: "\25BC\00a0";
+}
+#nlco-dashboard details > div {
+  padding: 0 16px 12px 16px;
+}
+
+/* === Go to Top === */
+#nlco-dashboard .go-top {
+  text-align: right;
+  margin-top: 12px;
+}
+#nlco-dashboard .go-top a {
+  color: var(--gold);
+  font-size: 13px;
+  text-decoration: none;
+}
+#nlco-dashboard .go-top a:hover {
+  color: var(--gold-bright);
+  text-decoration: underline;
+}
+
+/* === Floating Top Button === */
+#nlco-dashboard .float-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--gold);
+  color: #1a1206;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  z-index: 100;
+}
+#nlco-dashboard .float-top:hover {
+  background: var(--gold-bright);
+}
+
+/* === Callouts === */
+#nlco-dashboard .callout-pos {
+  background: var(--pos-bg);
+  border-left: 3px solid var(--green);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin: 8px 0;
+  font-size: 14px;
+}
+#nlco-dashboard .callout-neg {
+  background: var(--neg-bg);
+  border-left: 3px solid var(--red);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin: 8px 0;
+  font-size: 14px;
+}
+#nlco-dashboard .callout-info {
+  background: #101d2e;
+  border-left: 3px solid var(--blue);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+/* === Content list items === */
+#nlco-dashboard .content-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  gap: 12px;
+}
+#nlco-dashboard .content-item:last-child {
+  border-bottom: none;
+}
+#nlco-dashboard .content-title {
+  color: var(--txt);
+  font-weight: 600;
+  font-size: 14px;
+}
+#nlco-dashboard .content-meta {
+  font-size: 13px;
+  color: var(--muted);
+}
+#nlco-dashboard .channel-badges {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+#nlco-dashboard .ch-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* === Source tag === */
+#nlco-dashboard .source-tag {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 8px;
+}
+
+/* === Footer === */
+#nlco-dashboard footer {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* === Responsive === */
+@media (max-width: 600px) {
+  #nlco-dashboard { padding: 12px; }
+  #nlco-dashboard .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  #nlco-dashboard h1 { font-size: 22px; }
+  #nlco-dashboard .stat-figure { font-size: 28px; }
+  #nlco-dashboard table { font-size: 13px; }
+  #nlco-dashboard th, #nlco-dashboard td { padding: 6px 8px; }
+  #nlco-dashboard .tab-btn { padding: 8px 12px; font-size: 13px; }
+}
+</style>
+</head>
+<body style="margin:0;padding:0;background:#0b0d10;">
+<div id="nlco-dashboard">
+
+<!-- ============ HEADER ============ -->
+<header id="top">
+  <div class="kicker">Nicholas Levenstein &amp; Co</div>
+  <h1>Marketing Dashboard</h1>
+  <div class="header-sub">Adhis work monitoring for Fred (Fundraising) and Christopher Nolan (Content). Data pulled 1 Nov 2026 17:00 WITA. Auto-refreshes every 3 hours.</div>
+</header>
+
+<!-- ============ TOC ============ -->
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <a href="#overview">Overview</a>
+  <a href="#outreach">Outreach Pipeline</a>
+  <a href="#content">Content Production</a>
+  <a href="#social">Social Publishing</a>
+</nav>
+
+<!-- ============ TABS ============ -->
+<div class="tabs">
+  <button class="tab-btn active" data-tab="overview">Overview</button>
+  <button class="tab-btn" data-tab="outreach">Outreach</button>
+  <button class="tab-btn" data-tab="content">Content</button>
+  <button class="tab-btn" data-tab="social">Social</button>
+</div>
+
+<!-- ======================================================== -->
+<!-- TAB 1: OVERVIEW                                          -->
+<!-- ======================================================== -->
+<div id="overview" class="tab-panel active">
+
+  <!-- At-a-glance -->
+  <div class="kicker">At a Glance</div>
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-figure">189</div>
+      <div class="stat-label">Pipeline Contacts</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-figure" style="color:var(--red);">17</div>
+      <div class="stat-label">Waiting on Nick</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-figure" style="color:var(--amber);">57</div>
+      <div class="stat-label">Action Needed</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-figure">12</div>
+      <div class="stat-label">Awaiting Reply</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-figure">6</div>
+      <div class="stat-label">Content Published</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-figure">9</div>
+      <div class="stat-label">Social Posts</div>
+    </div>
+  </div>
+
+  <!-- Waiting on Nick -->
+  <h2 id="waiting-nick">Waiting on Nick</h2>
+  <div class="callout-neg">
+    <strong>1 overdue item:</strong> Miklos Veszpremi â subscription agreement executed, wire still pending. Weekly follow-up in progress.
+  </div>
+
+  <div class="card">
+    <h3>Decisions Needed (Outreach)</h3>
+    <table>
+      <tr><th>Contact</th><th>Decision</th><th>Status</th></tr>
+      <tr><td>Wei Shen</td><td>Never contacted (HK). Approach or drop?</td><td><span class="pill pill-amber">Pending</span></td></tr>
+      <tr><td>Henry Hau</td><td>Never contacted (HK). Approach or drop?</td><td><span class="pill pill-amber">Pending</span></td></tr>
+      <tr><td>Revatha Basnayake</td><td>Bali friend. Approach or drop?</td><td><span class="pill pill-amber">Pending</span></td></tr>
+      <tr><td>Bruno Zysman</td><td>Bali friend. Approach or drop?</td><td><span class="pill pill-amber">Pending</span></td></tr>
+      <tr><td>Alex Tishikov</td><td>Identified only. Approach or drop?</td><td><span class="pill pill-amber">Pending</span></td></tr>
+      <tr><td>Yi Li</td><td>HOLD per Nick 20 Oct. Approach or drop?</td><td><span class="pill pill-amber">Pending</span></td></tr>
+      <tr><td>David Lolaev</td><td>HOLD per Nick 20 Oct. Approach or drop?</td><td><span class="pill pill-amber">Pending</span></td></tr>
+      <tr><td>Connie (investor)</td><td>HOLD per Nick 20 Oct. Approach or drop?</td><td><span class="pill pill-amber">Pending</span></td></tr>
+      <tr><td>Thomas Angel</td><td>HOLD per Nick 20 Oct. Approach or drop?</td><td><span class="pill pill-amber">Pending</span></td></tr>
+      <tr><td>Alex Burgess</td><td>HOLD per Nick 20 Oct. Approach or drop?</td><td><span class="pill pill-amber">Pending</span></td></tr>
+      <tr><td>Quentin Werl&eacute;</td><td>6M sells AIFM services, not investor. Pivot to distribution?</td><td><span class="pill pill-blue">Waiting on Nick</span></td></tr>
+      <tr><td>Sandra Lambert</td><td>Preqin pricing requested 30 Oct. Confirm trial terms.</td><td><span class="pill pill-blue">Waiting on Nick</span></td></tr>
+      <tr><td>Jonas Lindholm</td><td>Email may have bounced. No channel until confirmed.</td><td><span class="pill pill-amber">Pending</span></td></tr>
+    </table>
+    <div class="source-tag">Source: Zoho CRM &middot; Next_Action field scan</div>
+  </div>
+
+  <div class="card">
+    <h3>Decisions Needed (Content)</h3>
+    <table>
+      <tr><th>Item</th><th>Decision</th><th>Status</th></tr>
+      <tr><td>New clips (C4463, C4465)</td><td>Two raw clips from Nick's laptop. What are they for?</td><td><span class="pill pill-amber">Pending</span></td></tr>
+      <tr><td>Monday Market carousel (26 Oct)</td><td>Slide 6 stale after Fed decision 29 Oct. Rewrite or drop?</td><td><span class="pill pill-amber">Pending</span></td></tr>
+      <tr><td>Stock photos in carousel</td><td>Allow as exception to Style Guide, or not?</td><td><span class="pill pill-amber">Pending</span></td></tr>
+      <tr><td>Monday Market video (26 Oct)</td><td>Approve final for posting</td><td><span class="pill pill-amber">Pending</span></td></tr>
+      <tr><td>Press kit v2</td><td>Publishing route for nlcfunds.com</td><td><span class="pill pill-amber">Pending</span></td></tr>
+      <tr><td>Media seat (New Employee 2)</td><td>Confirm owner: Adhis, or keep seat open?</td><td><span class="pill pill-blue">Waiting on Nick</span></td></tr>
+    </table>
+    <div class="source-tag">Source: Christopher Nolan HANDOFF.html &middot; 30 Oct 2026</div>
+  </div>
+
+  <!-- Adhis Today -->
+  <h2>Adhis Today</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+    <div class="card">
+      <div class="kicker">Fred (Fundraising)</div>
+      <div style="font-size:14px;">
+        <strong style="color:var(--txt);">57 actions queued</strong> across outreach pipeline.
+        Key items: 3 Nov email fallback deadline for unaccepted LinkedIn connects,
+        7-day nudges for Oct 20 batch, and new connection pitches (Jose Martinez, Max Golts, Brennin Kroog).
+      </div>
+    </div>
+    <div class="card">
+      <div class="kicker">Christopher Nolan (Content)</div>
+      <div style="font-size:14px;">
+        <strong style="color:var(--txt);">7 items waiting on Nick.</strong>
+        No new journal entries since 28 Oct. Two raw clips arrived 30 Oct. Monday Market carousel and video pending approval.
+      </div>
+    </div>
+  </div>
+
+  <!-- Pipeline Breakdown -->
+  <h2>Pipeline Breakdown</h2>
+  <div class="card">
+    <table>
+      <tr><th>Category</th><th style="text-align:right">Count</th><th>Owner</th><th>Status</th></tr>
+      <tr><td>Waiting on Nick</td><td style="text-align:right">17</td><td>Nick</td><td><span class="pill pill-red">Blocked</span></td></tr>
+      <tr><td>Overdue (wire pending)</td><td style="text-align:right">1</td><td>Nick</td><td><span class="pill pill-red">Dropped</span></td></tr>
+      <tr><td>Action needed (Adhis)</td><td style="text-align:right">57</td><td>Adhis</td><td><span class="pill pill-amber">Pending</span></td></tr>
+      <tr><td>Awaiting reply</td><td style="text-align:right">12</td><td>Adhis</td><td><span class="pill pill-green">Completed</span></td></tr>
+      <tr><td>Parked / Skipped</td><td style="text-align:right">21</td><td>---</td><td><span class="pill pill-muted">Parked</span></td></tr>
+      <tr><td>Legacy triage (Olha)</td><td style="text-align:right">56</td><td>Olha</td><td><span class="pill pill-muted">Parked</span></td></tr>
+      <tr><td>Fund-of-funds batch</td><td style="text-align:right">19</td><td>Adhis</td><td><span class="pill pill-muted">Parked</span></td></tr>
+      <tr><td>Other / uncategorized</td><td style="text-align:right">6</td><td>---</td><td><span class="pill pill-muted">---</span></td></tr>
+    </table>
+    <div class="source-tag">Source: Zoho CRM Contacts &middot; CMFDH_Pipeline = true</div>
+  </div>
+
+  <div class="go-top"><a href="#top">Go to top</a></div>
+</div>
+
+<!-- ======================================================== -->
+<!-- TAB 2: OUTREACH                                          -->
+<!-- ======================================================== -->
+<div id="outreach" class="tab-panel">
+
+  <div class="kicker">Outreach Pipeline</div>
+  <h2 style="border-top:none;padding-top:0;">Channels</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+    <div class="card">
+      <h3>Email</h3>
+      <div class="stat-figure">22</div>
+      <div class="stat-label">contacts touched via email</div>
+      <div style="font-size:13px;margin-top:8px;color:var(--muted);">Sent from adhis@levenstein.net CC nick@levenstein.net</div>
+    </div>
+    <div class="card">
+      <h3>LinkedIn</h3>
+      <div class="stat-figure">71</div>
+      <div class="stat-label">contacts touched via LinkedIn</div>
+      <div style="font-size:13px;margin-top:8px;color:var(--muted);">Nicholas Levenstein personal profile + Sales Navigator</div>
+    </div>
+  </div>
+
+  <!-- Overdue -->
+  <h2 id="overdue">Overdue</h2>
+  <div class="callout-neg">
+    <table style="margin:0;">
+      <tr><th>Contact</th><th>Company</th><th>Action</th></tr>
+      <tr>
+        <td style="color:var(--red);font-weight:600;">Miklos Veszpremi</td>
+        <td>---</td>
+        <td>Subscription agreement executed. Wire still pending. Email sent 27 Oct (nick@levenstein.net) soft check-in + Calendly. Follow up in 7 days. Weekly until funded.</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Action Needed -->
+  <h2 id="action-needed">Action Needed</h2>
+  <h3>Due Now: Pitches and Follow-ups</h3>
+  <div class="card">
+    <table>
+      <tr><th>Contact</th><th>Channel</th><th>Action</th></tr>
+      <tr><td>Jose Martinez S.</td><td><span class="ch-badge">LI</span></td><td>Connect ACCEPTED. Send full pitch message.</td></tr>
+      <tr><td>Max Golts</td><td><span class="ch-badge">LI</span></td><td>New connection 20-22 Oct. Send intro message.</td></tr>
+      <tr><td>Brennin Kroog</td><td><span class="ch-badge">LI</span></td><td>New connection 20-22 Oct. Send intro message.</td></tr>
+      <tr><td>Ju Hyun Cho</td><td><span class="ch-badge">Email</span></td><td>Intro from Rex Ho. Book the call (due 27 Oct).</td></tr>
+      <tr><td>Vishal Kotiya</td><td><span class="ch-badge">---</span></td><td>Log 27 Oct meeting notes. Follow up per Nick's Preqin trial proposal.</td></tr>
+      <tr><td>Tobias Bauer</td><td><span class="ch-badge">Email</span></td><td>2nd follow-up sent 29 Oct CC Nick. Awaiting reply.</td></tr>
+    </table>
+  </div>
+
+  <h3>7-Day Nudges (from 20 Oct batch)</h3>
+  <div class="card">
+    <table>
+      <tr><th>Contact</th><th>Channel</th><th>Action</th></tr>
+      <tr><td>Daniel Drescher</td><td><span class="ch-badge">LI</span></td><td>Sent 20 Oct, no reply. Send short nudge + Calendly.</td></tr>
+      <tr><td>Priyanka Mahajan</td><td><span class="ch-badge">LI</span></td><td>Sent 20 Oct, no reply. Send short nudge + Calendly.</td></tr>
+      <tr><td>Fabio Axisa</td><td><span class="ch-badge">LI</span></td><td>Sent 20 Oct, no reply. Send short nudge + Calendly.</td></tr>
+      <tr><td>Gabriel Karageorgiou</td><td><span class="ch-badge">LI</span></td><td>Sent 20 Oct, no reply. Send short nudge + Calendly.</td></tr>
+      <tr><td>Carrie Ma</td><td><span class="ch-badge">LI</span></td><td>Sent 20 Oct, no reply. Send short nudge + Calendly.</td></tr>
+      <tr><td>Albert Lau</td><td><span class="ch-badge">LI</span></td><td>Sent 20 Oct, no reply. Send short nudge + Calendly.</td></tr>
+      <tr><td>Mark Liao</td><td><span class="ch-badge">LI</span></td><td>Sent 20 Oct, no reply. Send short nudge + Calendly.</td></tr>
+      <tr><td>Aaron Li</td><td><span class="ch-badge">LI</span></td><td>Sent 20 Oct, no reply. Send short nudge + Calendly.</td></tr>
+      <tr><td>Samuel Leung</td><td><span class="ch-badge">LI</span></td><td>Sent 20 Oct, no reply. Send short nudge + Calendly.</td></tr>
+      <tr><td>Vladimir Shapovalov</td><td><span class="ch-badge">LI</span></td><td>Sent 20 Oct, no reply. Send short nudge + Calendly.</td></tr>
+      <tr><td>Antonio Puente S&aacute;nchez</td><td><span class="ch-badge">LI</span></td><td>Sent 20 Oct, no reply. Send short nudge + Calendly.</td></tr>
+    </table>
+  </div>
+
+  <h3>Connect Requests Pending (3 Nov email fallback)</h3>
+  <details>
+    <summary>20+ LinkedIn connect requests pending &mdash; email fallback if no response by 3 Nov</summary>
+    <div>
+      <table>
+        <tr><th>Contact</th><th>Action</th></tr>
+        <tr><td>Thomas Pratter</td><td>If accepted: full pitch. If nothing by 3 Nov: email fallback.</td></tr>
+        <tr><td>Sean Moynihan</td><td>If accepted: full pitch. If nothing by 3 Nov: email fallback.</td></tr>
+        <tr><td>Lakshay Gupta</td><td>If accepted: full pitch. If nothing by 3 Nov: email fallback.</td></tr>
+        <tr><td>Will Forsyth</td><td>If accepted: pitch. Else email fallback 3 Nov.</td></tr>
+        <tr><td>Kate Wang</td><td>If accepted: full pitch. If nothing by 3 Nov: email fallback.</td></tr>
+        <tr><td>Edgar Chia</td><td>If accepted: full pitch. If nothing by 3 Nov: email fallback.</td></tr>
+        <tr><td>Ivan Larionov</td><td>If accepted: full pitch. If nothing by 3 Nov: email fallback.</td></tr>
+        <tr><td>Zurab Kazhiloti</td><td>If accepted: full pitch. If nothing by 3 Nov: email fallback.</td></tr>
+        <tr><td>Rezo Shmertz</td><td>If accepted: full pitch. If nothing by 3 Nov: email fallback.</td></tr>
+        <tr><td>Rexhep Gjoci</td><td>If accepted: full pitch. If nothing by 3 Nov: email fallback.</td></tr>
+        <tr><td>Maxence Demerliac</td><td>If accepted: full pitch. If nothing by 3 Nov: email fallback.</td></tr>
+      </table>
+    </div>
+  </details>
+
+  <!-- Awaiting Reply -->
+  <h2 id="awaiting-reply">Awaiting Reply</h2>
+  <div class="callout-pos">
+    <strong>12 contacts</strong> have been contacted and are in their court. No action needed until they reply or the follow-up window opens.
+  </div>
+  <div class="card">
+    <table>
+      <tr><th>Contact</th><th>Channel</th><th>Last Touch</th><th>Status</th></tr>
+      <tr><td>Maxim Shilo</td><td><span class="ch-badge">Email</span></td><td>30 Oct</td><td>Sent daily returns dashboard link. Waiting reply.</td></tr>
+      <tr><td>Mustafa Khalifa</td><td><span class="ch-badge">LI</span></td><td>30 Oct</td><td>Adhis replied. Waiting for Mustafa.</td></tr>
+      <tr><td>Esmond Hwee</td><td><span class="ch-badge">LI</span></td><td>30 Oct</td><td>Adhis replied. Waiting for Esmond.</td></tr>
+      <tr><td>Andrew Sherlock</td><td><span class="ch-badge">Email</span></td><td>29 Oct</td><td>Emailed CC Nick. SuperSeed Ventures.</td></tr>
+      <tr><td>Jeffrey Liu</td><td><span class="ch-badge">Email</span></td><td>29 Oct</td><td>Emailed CC Nick. Jenfi.</td></tr>
+      <tr><td>Yan-Jun Feng</td><td><span class="ch-badge">Email</span></td><td>29 Oct</td><td>Emailed CC Nick. Bain Capital PE.</td></tr>
+      <tr><td>Ricardo Ros</td><td><span class="ch-badge">Email</span></td><td>29 Oct</td><td>Emailed CC Nick. Decarbonization Partners.</td></tr>
+      <tr><td>Alfonso Delgado</td><td><span class="ch-badge">Email</span></td><td>29 Oct</td><td>Emailed CC Nick. Blockstream Capital.</td></tr>
+      <tr><td>Sam Aldred</td><td><span class="ch-badge">Email</span></td><td>29 Oct</td><td>Emailed CC Nick. 1DP.</td></tr>
+      <tr><td>Nitesh Khera</td><td><span class="ch-badge">Email</span></td><td>29 Oct</td><td>Emailed CC Nick. Deutsche Bank.</td></tr>
+      <tr><td>Jonathan Nowak Delgado</td><td><span class="ch-badge">Email</span></td><td>29 Oct</td><td>Emailed CC Nick. Wolske Family Office.</td></tr>
+      <tr><td>Andrew Pang</td><td><span class="ch-badge">Email</span></td><td>29 Oct</td><td>Emailed CC Nick. Hsin Chong Intl.</td></tr>
+    </table>
+    <div class="source-tag">Source: Zoho CRM Contacts &middot; CMFDH_Pipeline = true</div>
+  </div>
+
+  <!-- Parked -->
+  <details>
+    <summary>Parked / Skipped &mdash; 21 contacts (no action needed)</summary>
+    <div>
+      <table>
+        <tr><th>Contact</th><th>Reason</th></tr>
+        <tr><td>Rebekah Woo</td><td>PARKED. Do not message again.</td></tr>
+        <tr><td>Stephan Zwahlen</td><td>PARKED. Do not message again.</td></tr>
+        <tr><td>Rainier (Nassau Street)</td><td>PARKED per Nick 29 Oct. Advisory, not allocator.</td></tr>
+        <tr><td>Cristine (Nassau Street)</td><td>PARKED per Nick 29 Oct. Advisory, not allocator.</td></tr>
+        <tr><td>Camille Nicole Yee</td><td>PARKED per Nick 29 Oct. Nassau Street Partners.</td></tr>
+        <tr><td>Naresh Anadkat</td><td>Nick said SKIP.</td></tr>
+        <tr><td>Ryuki Takenaga</td><td>HOLD. Gabriella handles.</td></tr>
+      </table>
+      <div style="font-size:13px;color:var(--muted);margin-top:8px;">+ 14 additional parked contacts in Zoho CRM.</div>
+    </div>
+  </details>
+
+  <!-- Legacy -->
+  <details>
+    <summary>Legacy Triage (Olha) &mdash; 56 contacts</summary>
+    <div>
+      <div class="callout-info">56 contacts from Olha's prior outreach. Status: re-engage with Q3 letter or park. Owner: Olha Lutchyn.</div>
+    </div>
+  </details>
+
+  <!-- FoF -->
+  <details>
+    <summary>Fund-of-Funds Batch &mdash; 19 contacts</summary>
+    <div>
+      <div class="callout-info">19 fund-of-funds generic inboxes (Jun batch). All parked until strategy decision.</div>
+    </div>
+  </details>
+
+  <div class="callout-info" style="margin-top:16px;">
+    <strong>Data source:</strong> Zoho CRM Contacts module, filtered by CMFDH_Pipeline = true. 189 total contacts.
+    Owners: Adhis (100), Olha (53), Nick (34), Erik (1), Jan (1).
+  </div>
+
+  <div class="go-top"><a href="#top">Go to top</a></div>
+</div>
+
+<!-- ======================================================== -->
+<!-- TAB 3: CONTENT                                           -->
+<!-- ======================================================== -->
+<div id="content" class="tab-panel">
+
+  <div class="kicker">Content Production</div>
+  <h2 style="border-top:none;padding-top:0;">Christopher Nolan Status</h2>
+
+  <div class="callout-info">
+    <strong>Latest HANDOFF:</strong> 30 Oct 2026, 17:45 WITA (scheduled daily firing, Gabriella's account).
+    Position: Active, Adhis directing. Media seat (New Employee 2) vacant, Nick interim.
+  </div>
+
+  <!-- Production Pipeline -->
+  <h3>Production Pipeline</h3>
+  <div class="card">
+    <table>
+      <tr><th>Stage</th><th>Item</th><th>Status</th><th>Last Updated</th></tr>
+      <tr>
+        <td><span class="pill pill-blue">Script</span></td>
+        <td>Monday Market Script (26 Oct)</td>
+        <td><span class="pill pill-green">Completed</span></td>
+        <td>26 Oct</td>
+      </tr>
+      <tr>
+        <td><span class="pill pill-amber">Footage</span></td>
+        <td>New clips C4463, C4465 from Nick's laptop</td>
+        <td><span class="pill pill-amber">Pending</span></td>
+        <td>30 Oct</td>
+      </tr>
+      <tr>
+        <td><span class="pill pill-amber">Editing</span></td>
+        <td>Monday Market 26 Oct carousel (8 slides)</td>
+        <td><span class="pill pill-red">Stale</span></td>
+        <td>26 Oct</td>
+      </tr>
+      <tr>
+        <td><span class="pill pill-amber">Editing</span></td>
+        <td>Monday Market 26 Oct video final</td>
+        <td><span class="pill pill-blue">Waiting on Nick</span></td>
+        <td>26 Oct</td>
+      </tr>
+      <tr>
+        <td><span class="pill pill-green">Published</span></td>
+        <td>Weekly market update carousel (28 Oct)</td>
+        <td><span class="pill pill-green">Completed</span></td>
+        <td>28 Oct</td>
+      </tr>
+      <tr>
+        <td><span class="pill pill-green">Published</span></td>
+        <td>"Gabriella runs the agents" video (26 Oct)</td>
+        <td><span class="pill pill-green">Completed</span></td>
+        <td>26 Oct</td>
+      </tr>
+      <tr>
+        <td><span class="pill pill-green">Published</span></td>
+        <td>SG &amp; HK events recap (22 Oct)</td>
+        <td><span class="pill pill-green">Completed</span></td>
+        <td>22 Oct</td>
+      </tr>
+      <tr>
+        <td><span class="pill pill-green">Published</span></td>
+        <td>Q3 2026 Report video (21 Oct)</td>
+        <td><span class="pill pill-green">Completed</span></td>
+        <td>21 Oct</td>
+      </tr>
+    </table>
+    <div class="source-tag">Source: Dropbox /agents/Christopher Nolan/ + Metricool published posts</div>
+  </div>
+
+  <!-- Carried Items -->
+  <h3>Carried Items (from prior handoffs)</h3>
+  <details>
+    <summary>7 items carried forward, all waiting on Nick</summary>
+    <div>
+      <table>
+        <tr><th>Item</th><th>Status</th></tr>
+        <tr><td>23 Oct SG &amp; HK event videos (multiple cuts)</td><td><span class="pill pill-blue">Waiting on Nick</span></td></tr>
+        <tr><td>Brand foundation materials</td><td><span class="pill pill-blue">Waiting on Nick</span></td></tr>
+        <tr><td>SG &amp; HK event final cut</td><td><span class="pill pill-blue">Waiting on Nick</span></td></tr>
+        <tr><td>Q3 report X cut</td><td><span class="pill pill-blue">Waiting on Nick</span></td></tr>
+        <tr><td>Q4 content strategy</td><td><span class="pill pill-blue">Waiting on Nick</span></td></tr>
+        <tr><td>13 investor scripts</td><td><span class="pill pill-blue">Waiting on Nick</span></td></tr>
+        <tr><td>Revised production schedule</td><td><span class="pill pill-blue">Waiting on Nick</span></td></tr>
+      </table>
+    </div>
+  </details>
+
+  <!-- Content Briefs -->
+  <h3>Recent Content Briefs</h3>
+  <div class="card">
+    <div class="content-item">
+      <div>
+        <div class="content-title">Monday Market Script (26 Oct)</div>
+        <div class="content-meta">66 KB HTML brief &middot; Bitcoin below $80K market analysis</div>
+      </div>
+      <span class="pill pill-green">Completed</span>
+    </div>
+    <div class="content-item">
+      <div>
+        <div class="content-title">Social Scheduling Options Report (26 Oct)</div>
+        <div class="content-meta">15 KB HTML &middot; Metricool vs alternatives for social publishing</div>
+      </div>
+      <span class="pill pill-green">Completed</span>
+    </div>
+    <div class="content-item">
+      <div>
+        <div class="content-title">NLCo Short-Form Edit Style Guide (27 Oct)</div>
+        <div class="content-meta">9 KB MD &middot; Video editing style standards</div>
+      </div>
+      <span class="pill pill-green">Completed</span>
+    </div>
+    <div class="content-item">
+      <div>
+        <div class="content-title">Press Kit v2 for nlcfunds.com (27 Oct)</div>
+        <div class="content-meta">47 KB HTML &middot; Awaiting Nick's publishing route decision</div>
+      </div>
+      <span class="pill pill-blue">Waiting on Nick</span>
+    </div>
+  </div>
+
+  <div class="go-top"><a href="#top">Go to top</a></div>
+</div>
+
+<!-- ======================================================== -->
+<!-- TAB 4: SOCIAL                                            -->
+<!-- ======================================================== -->
+<div id="social" class="tab-panel">
+
+  <div class="kicker">Social Publishing</div>
+  <h2 style="border-top:none;padding-top:0;">Production Volume</h2>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-figure">6</div>
+      <div class="stat-label">Unique Pieces</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-figure">9</div>
+      <div class="stat-label">Total Posts</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-figure">4</div>
+      <div class="stat-label">Channels Active</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-figure">0</div>
+      <div class="stat-label">Scheduled</div>
+    </div>
+  </div>
+
+  <div class="callout-info">
+    <strong>Period:</strong> 18 Sep 2026 (Adhis start date) to present. No scheduled (future) posts found. All 9 posts are PUBLISHED status.
+  </div>
+
+  <!-- Channels -->
+  <h3>Connected Channels</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+    <div class="card">
+      <h3 style="margin-top:0;">LinkedIn</h3>
+      <div style="font-size:14px;">Nicholas Levenstein &amp; Co (Company Page)</div>
+      <div style="font-size:13px;color:var(--muted);margin-top:4px;">5 posts published since 18 Sep</div>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0;">Instagram</h3>
+      <div style="font-size:14px;">levenstein.co</div>
+      <div style="font-size:13px;color:var(--muted);margin-top:4px;">3 posts published since 18 Sep</div>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0;">X / Twitter</h3>
+      <div style="font-size:14px;">@NickLevenstein</div>
+      <div style="font-size:13px;color:var(--muted);margin-top:4px;">7 posts published since 18 Sep*</div>
+      <div style="font-size:12px;color:var(--muted);">*Includes threads counted as separate posts</div>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0;">YouTube</h3>
+      <div style="font-size:14px;">Nicholas Levenstein &amp; Co</div>
+      <div style="font-size:13px;color:var(--muted);margin-top:4px;">3 posts published since 18 Sep</div>
+    </div>
+  </div>
+
+  <!-- Published Content -->
+  <h2 id="published-content">Published Content</h2>
+  <div class="card">
+    <div class="content-item">
+      <div>
+        <div class="content-title">Weekly Market Update Carousel</div>
+        <div class="content-meta">28 Oct 2026 &middot; 8-image carousel</div>
+        <div class="channel-badges" style="margin-top:4px;">
+          <span class="ch-badge">Instagram</span>
+          <span class="ch-badge">LinkedIn</span>
+        </div>
+      </div>
+      <span class="pill pill-green">Published</span>
+    </div>
+    <div class="content-item">
+      <div>
+        <div class="content-title">Weekly Market Update Thread (2/2)</div>
+        <div class="content-meta">28 Oct 2026 &middot; Twitter thread continuation</div>
+        <div class="channel-badges" style="margin-top:4px;">
+          <span class="ch-badge">Twitter</span>
+        </div>
+      </div>
+      <span class="pill pill-green">Published</span>
+    </div>
+    <div class="content-item">
+      <div>
+        <div class="content-title">Monday Market Episode 1: Bitcoin Below $80K</div>
+        <div class="content-meta">27 Oct 2026 &middot; Video</div>
+        <div class="channel-badges" style="margin-top:4px;">
+          <span class="ch-badge">Twitter</span>
+          <span class="ch-badge">Instagram</span>
+          <span class="ch-badge">LinkedIn</span>
+          <span class="ch-badge">YouTube</span>
+        </div>
+      </div>
+      <span class="pill pill-green">Published</span>
+    </div>
+    <div class="content-item">
+      <div>
+        <div class="content-title">"Gabriella Runs the Agents" Video</div>
+        <div class="content-meta">26 Oct 2026 &middot; Short-form video</div>
+        <div class="channel-badges" style="margin-top:4px;">
+          <span class="ch-badge">Twitter</span>
+          <span class="ch-badge">Instagram</span>
+          <span class="ch-badge">LinkedIn</span>
+          <span class="ch-badge">YouTube</span>
+        </div>
+      </div>
+      <span class="pill pill-green">Published</span>
+    </div>
+    <div class="content-item">
+      <div>
+        <div class="content-title">Singapore &amp; HK Events Recap (DAYS, TOKEN2049, WFOF)</div>
+        <div class="content-meta">22 Oct 2026 &middot; Video recap</div>
+        <div class="channel-badges" style="margin-top:4px;">
+          <span class="ch-badge">LinkedIn</span>
+          <span class="ch-badge">YouTube</span>
+          <span class="ch-badge">Twitter</span>
+        </div>
+      </div>
+      <span class="pill pill-green">Published</span>
+    </div>
+    <div class="content-item">
+      <div>
+        <div class="content-title">Q3 2026 Report Video</div>
+        <div class="content-meta">21 Oct 2026 &middot; Quarterly report video</div>
+        <div class="channel-badges" style="margin-top:4px;">
+          <span class="ch-badge">Twitter</span>
+        </div>
+      </div>
+      <span class="pill pill-green">Published</span>
+    </div>
+  </div>
+  <div class="source-tag">Source: Metricool &middot; brandId 7556600 &middot; All posts PUBLISHED status</div>
+
+  <div class="go-top"><a href="#top">Go to top</a></div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div>Nicholas Levenstein &amp; Co &middot; Marketing Dashboard v1</div>
+  <div style="margin-top:4px;">Data sources: Zoho CRM (pipeline), Metricool (social), Dropbox (content production)</div>
+  <div style="margin-top:4px;">Generated by Fred &middot; 1 Nov 2026 &middot; Auto-refreshes every 3 hours</div>
+  <div style="margin-top:8px;font-size:11px;">For levenstein.net/dashboard/ &middot; Embedded at nlcfunds.com/marketing</div>
+</footer>
+
+<!-- Floating Go to Top button -->
+<button class="float-top" id="floatTopBtn" onclick="document.getElementById('top').scrollIntoView({behavior:'smooth'});">&uarr;</button>
+
+</div><!-- end #nlco-dashboard -->
+
+<script>
+(function(){
+  // Tab switching
+  var btns = document.querySelectorAll('#nlco-dashboard .tab-btn');
+  var panels = document.querySelectorAll('#nlco-dashboard .tab-panel');
+  btns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      btns.forEach(function(b){ b.classList.remove('active'); });
+      panels.forEach(function(p){ p.classList.remove('active'); });
+      btn.classList.add('active');
+      var target = btn.getAttribute('data-tab');
+      var panel = document.getElementById(target);
+      if(panel) panel.classList.add('active');
+      document.getElementById('top').scrollIntoView({behavior:'smooth'});
+    });
+  });
+
+  // Floating top button visibility
+  var floatBtn = document.getElementById('floatTopBtn');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 400){
+      floatBtn.style.display = 'flex';
+    } else {
+      floatBtn.style.display = 'none';
+    }
+  });
+
+  // TOC anchor click also switches tabs
+  document.querySelectorAll('#nlco-dashboard .toc a').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var href = a.getAttribute('href').replace('#','');
+      var matchBtn = null;
+      btns.forEach(function(b){
+        if(b.getAttribute('data-tab') === href) matchBtn = b;
+      });
+      if(matchBtn){
+        e.preventDefault();
+        matchBtn.click();
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
